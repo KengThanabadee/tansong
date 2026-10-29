@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="th"><head><meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StudyFlow · ลองจัดงาน</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    :root{--forest:#173f34;--cream:#faf7ef;--orange:#f5c99c;--ink:#20362e;--muted:#66756d}
+    *{box-sizing:border-box}
+    body{font-family:Sarabun,sans-serif;color:var(--ink);margin:0}
+    button,input,select{font:inherit}
+    button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #dd8f4b;outline-offset:3px}
+    .page[hidden], [hidden]{display:none!important}
+    .nav-button{border-radius:999px;padding:9px 14px;white-space:nowrap;font-weight:600;color:#35554a;transition:.2s}
+    .nav-button:hover,.nav-button.active{background:var(--forest);color:#fff}
+    .primary{background:var(--forest);color:white;border-radius:13px;padding:12px 20px;font-weight:700;transition:transform .2s,background .2s}
+    .primary:hover{background:#285e49;transform:translateY(-2px)}
+    .secondary{background:#f1e5d5;color:var(--forest);border-radius:12px;padding:10px 17px;font-weight:700}
+    .secondary:hover{background:#ecd3b8}
+    .surface{background:white;border:1px solid #e7e7db;border-radius:20px;box-shadow:0 8px 30px #173f3409}
+    .field{width:100%;border:1px solid #ccd6cd;border-radius:11px;padding:10px 12px;background:white;min-height:44px}
+    .field:focus{outline:2px solid #cf975d;outline-offset:1px}
+    .field-label{display:block;font-weight:700;margin-bottom:6px}
+    .eyebrow{letter-spacing:.12em;text-transform:uppercase;font-size:12px;font-weight:800;color:#a05e2e}
+    .page{animation:appear .35s ease both}
+    @keyframes appear{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    .task-item{width:100%;text-align:left;border:1px solid #e2e8df;background:#fff;border-radius:15px;padding:16px;transition:.2s}
+    .task-item:hover,.task-item.selected{border-color:#487661;box-shadow:0 4px 16px #173f3414}
+    .chip{display:inline-block;border-radius:999px;padding:4px 10px;background:#f2f4ed;font-size:12px;font-weight:700}
+    details[open] summary{color:var(--forest)}
+    summary{cursor:pointer;font-weight:700}
+    .hero-pattern{background-image:radial-gradient(#f6e5c9 1px,transparent 1px);background-size:22px 22px}
+    @media(max-width:640px){.nav-scroll{overflow-x:auto;scrollbar-width:none}.nav-scroll::-webkit-scrollbar{display:none}}
+  
+a.primary,a.secondary,a.nav-button{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}a:focus-visible,button:focus-visible{outline:3px solid #b75d27;outline-offset:3px}
+</style>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
+  </head>
+ <body class="w-full min-h-screen" style="background: rgb(250, 247, 239);">
+  <header class="canva-header w-full border-b border-[#e1e6d9] bg-[#faf7ef] sticky top-0 z-30" style="background: rgb(250, 247, 239);">
+   <div class="max-w-7xl mx-auto px-4 md:px-8 py-3 flex flex-col lg:flex-row lg:items-center gap-3">
+    <div class="flex items-center justify-between">
+     <a class="font-extrabold text-2xl tracking-tight text-[#173f34] flex items-center gap-2" aria-label="ไปหน้าแรก" href="index.html"><span class="w-9 h-9 rounded-xl bg-[#173f34] text-[#faf7ef] grid place-items-center text-lg">S</span>StudyFlow</a> <span class="canva-tag bg-[#f5c99c] text-[#593819] rounded-full px-3 py-1 text-xs font-bold lg:hidden" style="background: rgb(245, 201, 156); color: rgb(89, 56, 25); font-weight: 400; font-style: normal; font-size: 16px;">โครงงาน TU107</span>
+    </div>
+    <nav class="nav-scroll flex gap-1 lg:ml-auto pb-1 lg:pb-0" aria-label="เมนูหลัก">
+     <a class="nav-button" style="font-weight: 400; font-style: normal; font-size: 16px;" href="index.html">หน้าแรก</a> <a class="nav-button" style="font-weight: 400; font-style: normal; font-size: 16px;" href="problem.html">ปัญหา</a> <a class="nav-button" style="font-weight: 400; font-style: normal; font-size: 16px;" href="solution.html">บริการ</a> <a class="nav-button" style="font-weight: 400; font-style: normal; font-size: 16px;" href="features.html">ฟีเจอร์</a> <a class="nav-button" style="font-weight: 400; font-style: normal; font-size: 16px;" href="usage.html">วิธีใช้</a> <a class="nav-button active" style="font-weight: 400; font-style: normal; font-size: 16px;" href="demo.html" aria-current="page">ลองจัดงาน</a> <a class="nav-button" style="font-weight: 400; font-style: normal; font-size: 16px;" href="plans.html">แพ็กเกจ</a> <a class="nav-button" style="font-weight: 400; font-style: normal; font-size: 16px;" href="faq.html">คำถาม</a>
+    </nav>
+   </div>
+  </header>
+  <main class="w-full max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12">
+   <section class="page" id="page-demo" aria-labelledby="demo-heading">
+    <div class="flex flex-wrap justify-between items-end gap-4 mb-7">
+     <div>
+      <p class="canva-tag eyebrow mb-2" style="font-weight: 400; font-style: normal; font-size: 16px;">ตัวอย่างทดลองใช้</p>
+      <h1 id="demo-heading" class="canva-text font-extrabold text-[#173f34]" style="color: rgb(23, 63, 52); font-weight: 800; font-style: normal; font-size: 32px;">จัดงานเรียนของคุณ</h1>
+     </div><button type="button" id="reset-open" class="canva-button secondary" style="background: rgb(241, 229, 213); color: rgb(23, 63, 52); font-weight: 400; font-style: normal; font-size: 16px;">เรียกคืนตัวอย่าง</button>
+    </div>
+    <div class="grid lg:grid-cols-[340px_minmax(0,1fr)] gap-5 items-start">
+     <div class="surface p-5">
+      <h2 class="canva-text font-bold mb-4" style="font-weight: 700; font-style: normal; font-size: 24px;">เพิ่มงานใหม่</h2>
+      <form id="task-form" novalidate="" class="space-y-3">
+       <div><label for="task-title" class="canva-text field-label" style="font-weight: 400; font-style: normal; font-size: 16px;">ชื่องาน *</label><input id="task-title" class="field" autocomplete="off">
+       </div>
+       <div><label for="task-subject" class="canva-text field-label" style="font-weight: 400; font-style: normal; font-size: 16px;">วิชา</label><input id="task-subject" class="field" autocomplete="off">
+       </div>
+       <div class="grid grid-cols-2 gap-3">
+        <div><label for="task-date" class="canva-text field-label" style="font-weight: 400; font-style: normal; font-size: 16px;">วันส่ง *</label><input id="task-date" type="date" class="field">
+        </div>
+        <div><label for="task-time" class="canva-text field-label" style="font-weight: 400; font-style: normal; font-size: 16px;">เวลา</label><input id="task-time" type="time" class="field" value="23:59">
+        </div>
+       </div>
+       <div><label for="task-priority" class="canva-text field-label" style="font-weight: 400; font-style: normal; font-size: 16px;">ความสำคัญ</label><select id="task-priority" class="field"><option value="ปกติ">ปกติ</option><option value="สูง">สูง</option><option value="ต่ำ">ต่ำ</option></select>
+       </div>
+       <p id="form-error" role="alert" class="text-[#a3392a] font-semibold" hidden=""></p>
+       <div class="flex gap-2 flex-wrap"><button type="submit" id="save-task" class="canva-button primary" style="background: rgb(23, 63, 52); color: rgb(255, 255, 255);">บันทึกงาน</button><button type="button" id="cancel-edit" class="canva-button secondary" hidden="" style="background: rgb(241, 229, 213); color: rgb(23, 63, 52); font-weight: 400; font-style: normal; font-size: 16px;">ยกเลิกแก้ไข</button>
+       </div>
+      </form>
+     </div>
+     <div class="space-y-5 min-w-0">
+      <div class="surface p-5">
+       <div class="grid sm:grid-cols-3 gap-3 mb-4">
+        <div><label for="search" class="canva-text field-label" style="font-weight: 400; font-style: normal; font-size: 16px;">ค้นหางาน</label><input id="search" type="search" class="field" placeholder="พิมพ์ชื่องาน">
+        </div>
+        <div><label for="filter-subject" class="canva-text field-label" style="font-weight: 400; font-style: normal; font-size: 16px;">วิชา</label><select id="filter-subject" class="field"><option value="">ทุกวิชา</option></select>
+        </div>
+        <div><label for="filter-status" class="canva-text field-label" style="font-weight: 400; font-style: normal; font-size: 16px;">สถานะ</label><select id="filter-status" class="field"><option value="">ทุกสถานะ</option><option value="ต้องทำ">ต้องทำ</option><option value="กำลังทำ">กำลังทำ</option><option value="เสร็จแล้ว">เสร็จแล้ว</option></select>
+        </div>
+       </div>
+       <div class="flex justify-between items-center mb-3">
+        <h2 class="canva-text font-bold" style="font-weight: 700; font-style: normal; font-size: 24px;">รายการงาน</h2><span id="task-count" class="text-sm text-[#66756d]" aria-live="polite"></span>
+       </div>
+       <div id="task-list" class="space-y-3"></div>
+       <p id="empty-state" class="text-center text-[#66756d] py-8" hidden="">ไม่พบงานที่ตรงกับการค้นหา ลองเปลี่ยนตัวกรองหรือเพิ่มงานใหม่</p>
+      </div>
+      <div id="detail-panel" class="surface p-5" hidden="">
+       <div class="flex justify-between items-start gap-3">
+        <div>
+         <p class="canva-text eyebrow mb-1" style="font-weight: 400; font-style: normal; font-size: 16px;">รายละเอียดงาน</p>
+         <h2 id="detail-title" class="font-bold text-xl break-words"></h2>
+        </div><button id="close-detail" type="button" class="canva-button secondary" style="background: rgb(241, 229, 213); color: rgb(23, 63, 52); font-weight: 400; font-style: normal; font-size: 16px;">ปิด</button>
+       </div>
+       <p id="detail-meta" class="text-[#66756d] my-3"></p>
+       <div class="flex flex-wrap items-center gap-2 mb-5">
+        <label for="detail-status" class="canva-text font-semibold" style="font-weight: 400; font-style: normal; font-size: 16px;">สถานะ</label> <select id="detail-status" class="field !w-auto"><option>ต้องทำ</option><option>กำลังทำ</option><option>เสร็จแล้ว</option></select> <button id="edit-task" type="button" class="canva-button secondary" style="background: rgb(241, 229, 213); color: rgb(23, 63, 52); font-weight: 400; font-style: normal; font-size: 16px;">แก้ไข</button> <button id="delete-task" type="button" class="canva-button secondary" style="background: rgb(241, 229, 213); color: rgb(23, 63, 52); font-weight: 400; font-style: normal; font-size: 16px;">ลบงาน</button>
+       </div>
+       <h3 class="canva-text font-bold mb-2" style="font-weight: 700; font-style: normal; font-size: 19px;">ขั้นตอนย่อย</h3>
+       <p id="progress-text" class="text-sm text-[#66756d] mb-2"></p>
+       <div class="w-full h-2 rounded-full bg-[#e8eee7] mb-4" role="progressbar" id="progress-bar" aria-label="ความคืบหน้าขั้นตอนย่อย" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div id="progress-fill" class="h-full bg-[#3b8060] rounded-full transition-all" style="width:0%"></div>
+       </div>
+       <div id="steps-list" class="space-y-2 mb-4"></div>
+       <form id="step-form" class="flex gap-2"><label for="step-input" class="canva-text sr-only" style="font-weight: 400; font-style: normal; font-size: 16px;">ชื่อขั้นตอนใหม่</label><input id="step-input" class="field min-w-0" placeholder="เพิ่มขั้นตอนย่อย" required=""><button type="submit" class="canva-button primary whitespace-nowrap" style="background: rgb(23, 63, 52); color: rgb(255, 255, 255); font-weight: 400; font-style: normal; font-size: 16px;">เพิ่มขั้นตอน</button>
+       </form>
+      </div>
+     </div>
+    </div>
+    <p id="feedback" role="status" aria-live="polite" class="mt-5 font-semibold text-[#245e45]" hidden=""></p>
+   </section>
+   </main>
+  <footer class="canva-footer w-full border-t border-[#e1e6d9] py-6 px-4 text-center" style="background: rgb(250, 247, 239);">
+   <p class="canva-text text-[#66756d]" style="color: rgb(102, 117, 109); font-weight: 400; font-style: normal; font-size: 16px;">StudyFlow · แนวคิดธุรกิจโครงงาน TU107</p>
+  </footer>
+  <div id="confirm-overlay" class="fixed inset-0 z-50 bg-[#10281eb3] flex items-center justify-center p-4" hidden="">
+   <div class="surface p-6 w-full max-w-md" role="dialog" aria-modal="true" aria-labelledby="confirm-title">
+    <h2 id="confirm-title" class="canva-text font-bold mb-3" style="font-weight: 700; font-style: normal; font-size: 24px;">ยืนยันการดำเนินการ</h2>
+    <p id="confirm-message" class="mb-6 text-[#52645a]"></p>
+    <div class="flex justify-end gap-2"><button id="confirm-cancel" type="button" class="canva-button secondary" style="background: rgb(241, 229, 213); color: rgb(23, 63, 52); font-weight: 400; font-style: normal; font-size: 16px;">ยกเลิก</button><button id="confirm-yes" type="button" class="canva-button primary" style="background: rgb(23, 63, 52); color: rgb(255, 255, 255); font-weight: 400; font-style: normal; font-size: 16px;">ยืนยัน</button>
+    </div>
+   </div>
+  </div>
+  <script src="demo.js"></script></body></html>

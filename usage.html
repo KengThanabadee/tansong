@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="th"><head><meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StudyFlow · วิธีใช้งาน</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    :root{--forest:#173f34;--cream:#faf7ef;--orange:#f5c99c;--ink:#20362e;--muted:#66756d}
+    *{box-sizing:border-box}
+    body{font-family:Sarabun,sans-serif;color:var(--ink);margin:0}
+    button,input,select{font:inherit}
+    button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #dd8f4b;outline-offset:3px}
+    .page[hidden], [hidden]{display:none!important}
+    .nav-button{border-radius:999px;padding:9px 14px;white-space:nowrap;font-weight:600;color:#35554a;transition:.2s}
+    .nav-button:hover,.nav-button.active{background:var(--forest);color:#fff}
+    .primary{background:var(--forest);color:white;border-radius:13px;padding:12px 20px;font-weight:700;transition:transform .2s,background .2s}
+    .primary:hover{background:#285e49;transform:translateY(-2px)}
+    .secondary{background:#f1e5d5;color:var(--forest);border-radius:12px;padding:10px 17px;font-weight:700}
+    .secondary:hover{background:#ecd3b8}
+    .surface{background:white;border:1px solid #e7e7db;border-radius:20px;box-shadow:0 8px 30px #173f3409}
+    .field{width:100%;border:1px solid #ccd6cd;border-radius:11px;padding:10px 12px;background:white;min-height:44px}
+    .field:focus{outline:2px solid #cf975d;outline-offset:1px}
+    .field-label{display:block;font-weight:700;margin-bottom:6px}
+    .eyebrow{letter-spacing:.12em;text-transform:uppercase;font-size:12px;font-weight:800;color:#a05e2e}
+    .page{animation:appear .35s ease both}
+    @keyframes appear{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+    .task-item{width:100%;text-align:left;border:1px solid #e2e8df;background:#fff;border-radius:15px;padding:16px;transition:.2s}
+    .task-item:hover,.task-item.selected{border-color:#487661;box-shadow:0 4px 16px #173f3414}
+    .chip{display:inline-block;border-radius:999px;padding:4px 10px;background:#f2f4ed;font-size:12px;font-weight:700}
+    details[open] summary{color:var(--forest)}
+    summary{cursor:pointer;font-weight:700}
+    .hero-pattern{background-image:radial-gradient(#f6e5c9 1px,transparent 1px);background-size:22px 22px}
+    @media(max-width:640px){.nav-scroll{overflow-x:auto;scrollbar-width:none}.nav-scroll::-webkit-scrollbar{display:none}}
+  
+a.primary,a.secondary,a.nav-button{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}a:focus-visible,button:focus-visible{outline:3px solid #b75d27;outline-offset:3px}
+</style>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
+  </head>
+ <body class="w-full min-h-screen" style="background: rgb(250, 247, 239);">
+  <header class="canva-header w-full border-b border-[#e1e6d9] bg-[#faf7ef] sticky top-0 z-30" style="background: rgb(250, 247, 239);">
+   <div class="max-w-7xl mx-auto px-4 md:px-8 py-3 flex flex-col lg:flex-row lg:items-center gap-3">
+    <div class="flex items-center justify-between">
+     <a class="font-extrabold text-2xl tracking-tight text-[#173f34] flex items-center gap-2" aria-label="ไปหน้าแรก" href="index.html"><span class="w-9 h-9 rounded-xl bg-[#173f34] text-[#faf7ef] grid place-items-center text-lg">S</span>StudyFlow</a> <span class="canva-tag bg-[#f5c99c] text-[#593819] rounded-full px-3 py-1 text-xs font-bold lg:hidden" style="background: rgb(245, 201, 156); color: rgb(89, 56, 25); font-weight: 400; font-style: normal; font-size: 16px;">โครงงาน TU107</span>
+    </div>
+    <nav class="nav-scroll flex gap-1 lg:ml-auto pb-1 lg:pb-0" aria-label="เมนูหลัก">
+     <a class="nav-button" style="font-weight: 400; font-style: normal; font-size: 16px;" href="index.html">หน้าแรก</a> <a class="nav-button" style="font-weight: 400; font-style: normal; font-size: 16px;" href="problem.html">ปัญหา</a> <a class="nav-button" style="font-weight: 400; font-style: normal; font-size: 16px;" href="solution.html">บริการ</a> <a class="nav-button" style="font-weight: 400; font-style: normal; font-size: 16px;" href="features.html">ฟีเจอร์</a> <a class="nav-button active" style="font-weight: 400; font-style: normal; font-size: 16px;" href="usage.html" aria-current="page">วิธีใช้</a> <a class="nav-button" style="font-weight: 400; font-style: normal; font-size: 16px;" href="demo.html">ลองจัดงาน</a> <a class="nav-button" style="font-weight: 400; font-style: normal; font-size: 16px;" href="plans.html">แพ็กเกจ</a> <a class="nav-button" style="font-weight: 400; font-style: normal; font-size: 16px;" href="faq.html">คำถาม</a>
+    </nav>
+   </div>
+  </header>
+  <main class="w-full max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12">
+   <section class="page" id="page-how" aria-labelledby="how-heading">
+    <p class="canva-text eyebrow" style="font-weight: 400; font-style: normal; font-size: 16px;">เริ่มต้นง่าย ๆ</p>
+    <h1 id="how-heading" class="canva-text font-extrabold text-[#173f34] mt-3 mb-8" style="color: rgb(23, 63, 52); font-weight: 800; font-style: normal; font-size: 32px;">จัดงานใน 4 ขั้น</h1>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+     <article class="surface p-6"><span class="eyebrow">01</span>
+      <h2 class="canva-text font-bold mt-3" style="font-weight: 700; font-style: normal; font-size: 24px;">เพิ่มงาน</h2>
+     </article>
+     <article class="surface p-6"><span class="eyebrow">02</span>
+      <h2 class="canva-text font-bold mt-3" style="font-weight: 700; font-style: normal; font-size: 24px;">ดูวันส่ง</h2>
+     </article>
+     <article class="surface p-6"><span class="eyebrow">03</span>
+      <h2 class="canva-text font-bold mt-3" style="font-weight: 700; font-style: normal; font-size: 24px;">แบ่งขั้นตอน</h2>
+     </article>
+     <article class="surface p-6"><span class="eyebrow">04</span>
+      <h2 class="canva-text font-bold mt-3" style="font-weight: 700; font-style: normal; font-size: 24px;">อัปเดตสถานะ</h2>
+     </article>
+    </div><a class="canva-button primary" style="background: rgb(23, 63, 52); color: rgb(255, 255, 255); font-weight: 400; font-style: normal; font-size: 16px;" href="demo.html">ลองจริง →</a>
+   </section>
+   </main>
+  <footer class="canva-footer w-full border-t border-[#e1e6d9] py-6 px-4 text-center" style="background: rgb(250, 247, 239);">
+   <p class="canva-text text-[#66756d]" style="color: rgb(102, 117, 109); font-weight: 400; font-style: normal; font-size: 16px;">StudyFlow · แนวคิดธุรกิจโครงงาน TU107</p>
+  </footer>
+  </body></html>
