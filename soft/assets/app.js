@@ -650,6 +650,188 @@
         (open.length ? '<p class="hero-demo-foot"><a href="board.html">ดูงานทั้งหมด ' + open.length + ' งาน →</a></p>' : '');
     };
     render();
+    heroDemo(slot);
+  }
+
+  /* ---------- self-playing demos (visual only, never saved) ---------- */
+  var calmMotion = !window.IntersectionObserver ||
+    (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches);
+
+  function onView(el, enter, leave) {
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { (e.isIntersecting ? enter : leave)(); });
+    }, { threshold: 0.45 }).observe(el);
+  }
+
+  // ticks through the real focus card's remaining steps on screen only, then resets and loops
+  function heroDemo(slot) {
+    if (calmMotion) return;
+    var timer = null, running = false, visible = false, hovered = false;
+    var wait = function (ms, fn) { timer = setTimeout(fn, ms); };
+    var halt = function () {
+      clearTimeout(timer);
+      if (running) { running = false; render(); }
+    };
+    var start = function () {
+      if (running || !visible || hovered || document.hidden) return;
+      var t = tasks.filter(function (x) { return !x.submitted; }).sort(byDue)[0];
+      var left = t ? t.subtasks.filter(function (s) { return !s.done; }) : [];
+      var card = slot.querySelector('.focus');
+      if (!left.length || !card || !card.querySelector('.focus-next .check')) return;
+      running = true;
+      var total = t.subtasks.length, done = total - left.length, i = 0;
+      var tick = function () {
+        if (!running) return;
+        if (!slot.contains(card)) { running = false; wait(1500, start); return; }
+        var box = card.querySelector('.focus-next .check'), label = card.querySelector('.focus-next label');
+        var bar = card.querySelector('.focus-prog .bar'), count = card.querySelector('.focus-prog > span');
+        box.checked = true;
+        wait(600, function () {
+          done++; i++;
+          bar.firstChild.style.width = Math.round(done / total * 100) + '%';
+          bar.classList.toggle('is-full', done === total);
+          count.textContent = done + '/' + total + ' ขั้น';
+          wait(800, function () {
+            label.classList.add('demo-out');
+            wait(280, function () {
+              if (i < left.length) {
+                label.lastChild.textContent = left[i].text;
+                box.checked = false;
+                label.classList.remove('demo-out');
+                wait(1500, tick);
+                return;
+              }
+              card.querySelector('.focus-next small').textContent = 'ทำครบทุกขั้นแล้ว เหลือส่งงาน';
+              label.innerHTML = '<span class="demo-done">' + I.check + 'พร้อมส่งงาน</span>';
+              label.classList.remove('demo-out');
+              wait(2600, function () {
+                card.classList.add('demo-fade');
+                wait(380, function () {
+                  running = false;
+                  render();
+                  var fresh = slot.querySelector('.focus');
+                  if (fresh) fresh.classList.add('demo-in');
+                  wait(2200, start);
+                });
+              });
+            });
+          });
+        });
+      };
+      wait(1400, tick);
+    };
+    onView(slot, function () { visible = true; start(); }, function () { visible = false; halt(); });
+    slot.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') { hovered = true; halt(); } });
+    slot.addEventListener('pointerleave', function (e) { if (e.pointerType === 'mouse') { hovered = false; wait(2500, start); } });
+    slot.addEventListener('touchstart', function () { hovered = true; halt(); }, { passive: true });
+    slot.addEventListener('focusin', function () { hovered = true; halt(); });
+    document.addEventListener('visibilitychange', function () { if (document.hidden) halt(); else start(); });
+  }
+
+  // each mock on the features page acts out its feature once whenever it scrolls into view
+  function initFeatures() {
+    if (calmMotion) return;
+    var plays = [playForm, playSort, playFocus, playSteps, playSearch, playToast];
+    [].slice.call(document.querySelectorAll('.feature-demo')).forEach(function (el, n) {
+      var play = plays[n], orig = el.innerHTML, timers = [], busy = false, seen = false;
+      if (!play) return;
+      var at = function (ms, fn) { timers.push(setTimeout(fn, ms)); };
+      onView(el, function () {
+        if (busy) return;
+        busy = true; seen = true;
+        el.innerHTML = orig;
+        play(el, at);
+        at(9000, function () { busy = false; });
+      }, function () {
+        if (!seen) return;
+        timers.forEach(clearTimeout); timers = []; busy = false;
+        el.innerHTML = orig;
+      });
+    });
+  }
+
+  function typeInto(node, text, at, from, speed) {
+    var chars = Array.from(text);
+    node.textContent = '';
+    node.classList.add('typing');
+    chars.forEach(function (c, k) { at(from + k * speed, function () { node.textContent += c; }); });
+    at(from + chars.length * speed + 120, function () { node.classList.remove('typing'); });
+    return from + chars.length * speed + 220;
+  }
+
+  function playForm(el, at) {
+    var fields = [].slice.call(el.querySelectorAll('.mock-field div'));
+    var texts = fields.map(function (f) { f.style.minHeight = f.offsetHeight + 'px'; return f.textContent; });
+    fields.forEach(function (f) { f.textContent = ''; });
+    var t = 400;
+    fields.forEach(function (f, k) { t = typeInto(f, texts[k], at, t, 34); });
+  }
+
+  function playSort(el, at) {
+    // start as an unsorted plain list, then FLIP each task into its sorted group
+    var sorted = [].slice.call(el.children);
+    var items = sorted.filter(function (x) { return x.classList.contains('mini-task'); });
+    var heads = sorted.filter(function (x) { return x.classList.contains('group-head'); });
+    el.style.minHeight = el.offsetHeight + 'px';
+    heads.forEach(function (h) { h.style.display = 'none'; });
+    [items[1], items[2], items[0]].forEach(function (x) { el.appendChild(x); });
+    at(1000, function () {
+      var first = items.map(function (x) { return x.getBoundingClientRect().top; });
+      sorted.forEach(function (x) { el.appendChild(x); });
+      heads.forEach(function (h) { h.style.display = ''; h.classList.add('demo-hide'); });
+      items.forEach(function (x, k) { x.style.transform = 'translateY(' + (first[k] - x.getBoundingClientRect().top) + 'px)'; });
+      el.offsetHeight;
+      items.forEach(function (x) { x.classList.add('demo-move'); x.style.transform = ''; });
+      heads.forEach(function (h) { h.classList.remove('demo-hide'); });
+    });
+  }
+
+  function playFocus(el, at) {
+    var box = el.querySelector('.check'), label = el.querySelector('.focus-next label');
+    var bar = el.querySelector('.bar > span'), count = el.querySelector('.focus-prog > span');
+    at(900, function () { box.classList.add('is-on'); });
+    at(1500, function () { bar.style.width = '50%'; count.textContent = '2/4 ขั้น'; });
+    at(2300, function () { label.classList.add('demo-out'); });
+    at(2600, function () {
+      box.classList.remove('is-on');
+      label.lastChild.textContent = 'ตรวจคำตอบกับเฉลยท้ายบท';
+      label.classList.remove('demo-out');
+    });
+  }
+
+  function playSteps(el, at) {
+    var steps = [].slice.call(el.querySelectorAll('.step-item')).slice(2);
+    var bar = el.querySelector('.bar > span'), count = el.querySelector('.count');
+    steps.forEach(function (s, k) {
+      at(900 + k * 1100, function () {
+        s.classList.add('is-done');
+        s.querySelector('.check').classList.add('is-on');
+      });
+      at(1300 + k * 1100, function () {
+        bar.style.width = Math.round((3 + k) / 6 * 100) + '%';
+        count.textContent = (3 + k) + '/6 ขั้น';
+      });
+    });
+  }
+
+  function playSearch(el, at) {
+    var input = el.querySelector('.search-box .input'), card = el.querySelector('.task');
+    card.classList.add('demo-hide');
+    var t = typeInto(input, input.textContent, at, 500, 160);
+    at(t + 200, function () { card.classList.remove('demo-hide'); });
+    at(t + 700, function () { var m = card.querySelector('mark'); if (m) m.classList.add('demo-pulse'); });
+  }
+
+  function playToast(el, at) {
+    var toast = el.querySelector('.mock-toast'), undo = toast.querySelector('b');
+    toast.classList.add('demo-hide');
+    at(500, function () { toast.classList.remove('demo-hide'); });
+    at(1900, function () { undo.classList.add('demo-press'); });
+    at(2150, function () {
+      undo.classList.remove('demo-press');
+      undo.style.visibility = 'hidden';
+      toast.firstChild.textContent = 'กู้คืน “ควิซการอ่าน Unit 6” แล้ว';
+    });
   }
 
   function initBoard() {
@@ -955,7 +1137,7 @@
     requestAnimationFrame(function () { navList.classList.add('pill-ready'); });
   }
 
-  var init = { home: initHome, board: initBoard, search: initSearch, task: initTask }[page];
+  var init = { home: initHome, board: initBoard, search: initSearch, task: initTask, features: initFeatures }[page];
   if (init) {
     toastRegion();
     init();

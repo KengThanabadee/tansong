@@ -14,10 +14,7 @@
   --tomato-soft: #FDE9DD;
   --amber-soft: #FDF1D6;
   --amber-ink: #85570A;
-  --hl: #D6E2FF;
-  --blue: #2F5BFF;
-  --blue-soft: #E6ECFF;
-  --blue-ink: #2340C8;
+  --hl: #E8EDFF;
   --pink: #E5428B;
   --pink-soft: #FDE4EF;
   --pink-ink: #B0175C;
@@ -65,7 +62,7 @@ mark, .hl {
 }
 .nav-bar { height: 76px; }
 .brand { font: 600 24px/1 var(--f-head); letter-spacing: -.015em; }
-.brand svg { width: 34px; height: 34px; filter: drop-shadow(0 4px 8px rgba(47, 91, 255, .28)); }
+.brand svg { width: 34px; height: 34px; filter: drop-shadow(0 4px 8px rgba(59, 91, 255, .28)); }
 .nav-links a {
   padding: 9px 16px; border-radius: 999px;
   font: 400 15.5px/1.3 var(--f-head); color: var(--ink);
@@ -123,7 +120,7 @@ mark, .hl {
   font-family: var(--f-body); background: #fff;
   border: 1px solid var(--line); border-radius: 14px;
 }
-.input:focus { border-color: var(--blue); box-shadow: 0 0 0 4px rgba(47, 91, 255, .16); }
+.input:focus { border-color: var(--blue); box-shadow: 0 0 0 4px rgba(59, 91, 255, .16); }
 .input[aria-invalid="true"] { border-color: var(--pink); }
 .field > label, .field > legend { font-weight: 500; }
 
@@ -172,7 +169,7 @@ thead th { background: var(--paper-2); font-weight: 500; }
 
 /* insight image surfaces */
 .band, .focus {
-  background: #1B3C9E url("insight-bg.png") 30% 60% / cover no-repeat;
+  background: var(--mesh);
   color: #fff;
   border: 1px solid rgba(255, 255, 255, .75);
   box-shadow: var(--shadow-lg);
@@ -180,7 +177,7 @@ thead th { background: var(--paper-2); font-weight: 500; }
 .band { border-radius: 30px; }
 .band::after {
   inset: 0; top: 0; right: 0; width: auto; height: auto; border: 0; border-radius: 0;
-  background: linear-gradient(90deg, rgba(8, 22, 78, .45), rgba(8, 22, 78, .12));
+  background: linear-gradient(90deg, rgba(22, 36, 140, .45), rgba(22, 36, 140, .12));
   pointer-events: none;
 }
 .band > * { position: relative; z-index: 1; }
@@ -215,7 +212,7 @@ thead th { background: var(--paper-2); font-weight: 500; }
 .focus::after { display: none; }
 .focus::before {
   content: ''; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(180deg, rgba(8, 22, 78, .08), rgba(8, 22, 78, .42) 60%, rgba(8, 22, 78, .62));
+  background: linear-gradient(180deg, rgba(22, 36, 140, .08), rgba(22, 36, 140, .42) 60%, rgba(22, 36, 140, .62));
 }
 .focus > * { position: relative; z-index: 1; }
 .focus-label {
@@ -229,10 +226,10 @@ thead th { background: var(--paper-2); font-weight: 500; }
 .focus-big {
   margin-bottom: 10px;
   font: 400 clamp(64px, 6.4vw, 92px)/1 var(--f-head); letter-spacing: -.045em;
-  text-shadow: 0 2px 24px rgba(8, 22, 78, .3);
+  text-shadow: 0 2px 24px rgba(22, 36, 140, .3);
 }
 .focus-big small { font-size: .7em; }
-.focus h2, .focus h3 { font-size: 22px; font-weight: 500; line-height: 1.35; text-shadow: 0 1px 14px rgba(8, 22, 78, .35); }
+.focus h2, .focus h3 { font-size: 22px; font-weight: 500; line-height: 1.35; text-shadow: 0 1px 14px rgba(22, 36, 140, .35); }
 .focus h2 a:hover, .focus h3 a:hover { color: #fff; }
 .focus-meta { color: rgba(255, 255, 255, .9); }
 .focus .subj { color: #fff; }
@@ -297,7 +294,7 @@ thead th { background: var(--paper-2); font-weight: 500; }
 .stat-overdue { --dot: var(--pink); }
 .stat-soon { --dot: var(--tomato); }
 .stat-week { --dot: var(--blue); }
-.stat-later { --dot: #9AA6C8; }
+.stat-later { --dot: #A3A5AD; }
 .stat-submitted { --dot: var(--green); }
 
 /* progress by subject */
@@ -382,9 +379,9 @@ dialog.sheet::backdrop { background: rgba(20, 21, 26, .38); -webkit-backdrop-fil
 .sheet-foot { background: var(--card); border-top-color: var(--line); }
 .form-error { color: var(--pink-ink); font-weight: 500; }
 .edit-steps .done-mark.is-done { background: var(--green); }
-.toast { border-radius: 18px; background: #17181B; font-weight: 400; }
+.toast { border-radius: 18px; background: var(--blue-deep); font-weight: 400; }
 .toast button { border-radius: 999px; color: #fff; font-weight: 500; }
-.mock-toast { border-radius: 18px; background: #17181B; }
+.mock-toast { border-radius: 18px; background: var(--blue-deep); }
 .mock-toast b { color: #fff; border-radius: 999px; }
 
 /* ---------- footer ---------- */
@@ -527,8 +524,8 @@ th, td { padding: 12px 18px; }
   .board .stat:last-child:nth-child(odd) { grid-column: 1 / -1; }
   .detail-due { font-size: 16px; }
 }
-.band::after { background: linear-gradient(90deg, rgba(8, 22, 78, .5), rgba(8, 22, 78, .38)); }
-.band .btn-ghost { background: rgba(8, 22, 78, .38); border-color: rgba(255, 255, 255, .65); }
+.band::after { background: linear-gradient(90deg, rgba(22, 36, 140, .5), rgba(22, 36, 140, .38)); }
+.band .btn-ghost { background: rgba(22, 36, 140, .38); border-color: rgba(255, 255, 255, .65); }
 
 /* ---------- calmer cards: subject colour only as the small dot ---------- */
 .task::before, .mini-task::before,
@@ -582,13 +579,13 @@ th, td { padding: 12px 18px; }
 
 /* the one signature surface: live "ทำอันนี้ก่อน" card on home + board */
 #hero-demo .focus, #focus-slot .focus {
-  background: #1B3C9E url("insight-bg.png") 30% 60% / cover no-repeat;
+  background: var(--mesh);
 }
 #hero-demo .focus::before, #focus-slot .focus::before {
   display: block; content: ''; position: absolute; inset: 0; pointer-events: none;
-  background: linear-gradient(180deg, rgba(8, 22, 78, .15), rgba(8, 22, 78, .55));
+  background: linear-gradient(180deg, rgba(22, 36, 140, .15), rgba(22, 36, 140, .55));
 }
-#hero-demo .focus-next, #focus-slot .focus-next { background: rgba(8, 22, 78, .32); border-color: rgba(255, 255, 255, .22); }
+#hero-demo .focus-next, #focus-slot .focus-next { background: rgba(26, 44, 158, .32); border-color: rgba(255, 255, 255, .22); }
 #hero-demo .focus-why, #focus-slot .focus-why { color: rgba(255, 255, 255, .78); }
 
 /* brand name: logo wordmark and in-text mentions */
@@ -663,3 +660,92 @@ h3, .task-title, .focus h2, .focus h3 { font-weight: 600; }
 .nw { white-space: nowrap; }
 p, li, dd, summary, td, th, .muted { text-wrap: pretty; }
 h1, h2, h3 { text-wrap: balance; }
+
+/* self-playing demos */
+.bar > span { transition: width .65s cubic-bezier(.34, 1.25, .5, 1), background-color .3s ease; }
+.check::after { transition: transform .28s cubic-bezier(.34, 1.7, .5, 1); }
+.focus-next .check.is-on { background: var(--green); border-color: var(--green); }
+.focus-next label { transition: opacity .26s ease, transform .26s ease; }
+.focus-next label.demo-out { opacity: 0; transform: translateY(-6px); }
+.demo-done { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; }
+.demo-done svg { width: 20px; height: 20px; color: #7CE0A3; }
+.focus.demo-fade { opacity: 0; transition: opacity .35s ease; }
+.focus.demo-in { animation: demo-in .5s ease both; }
+@keyframes demo-in { from { opacity: 0; transform: translateY(6px); } }
+.typing::after {
+  content: ''; display: inline-block; width: 1.5px; height: 1.05em; margin-left: 2px;
+  background: var(--blue); vertical-align: -.15em; animation: caret .9s steps(1) infinite;
+}
+@keyframes caret { 50% { opacity: 0; } }
+.demo-move { transition: transform .75s cubic-bezier(.34, 1.25, .5, 1); }
+.feature-demo .group-head, .feature-demo .task, .mock-toast { transition: opacity .4s ease, transform .5s cubic-bezier(.34, 1.4, .5, 1); }
+.feature-demo .demo-hide { opacity: 0; transform: translateY(10px); transition: none; }
+.step-item span:last-child { transition: color .3s ease; }
+.mock-toast b { transition: transform .15s ease, background-color .15s ease; }
+.mock-toast b.demo-press { transform: scale(.92); background: rgba(255, 255, 255, .2); }
+mark.demo-pulse { animation: mark-pulse 1.2s ease; }
+@keyframes mark-pulse { 30% { box-shadow: 0 0 0 4px rgba(255, 214, 10, .55); } }
+
+/* colour system from the M3 logo: blue is the one primary, black is only for text.
+   blue fills every action and progress; the logo's violet + coral glow appears on the CTA band only */
+:root {
+  --primary-grad: linear-gradient(180deg, var(--blue-hi), var(--blue-lo));
+  --mesh:
+    radial-gradient(120% 140% at 100% 0%, rgba(176, 92, 255, .85), rgba(176, 92, 255, 0) 55%),
+    radial-gradient(90% 120% at 85% 110%, rgba(255, 122, 89, .9), rgba(255, 122, 89, 0) 60%),
+    linear-gradient(135deg, var(--blue-hi), var(--blue-deep));
+}
+.btn-accent, .btn-ink {
+  background: var(--primary-grad); color: #fff; border-color: transparent;
+  box-shadow: 0 8px 18px -10px rgba(36, 66, 214, .8), inset 0 1px 0 rgba(255, 255, 255, .22);
+}
+.btn-accent:hover, .btn-ink:hover { background: linear-gradient(180deg, var(--blue), var(--blue-deep)); color: #fff; }
+@media (min-width: 1101px) {
+  .nav-pill {
+    background: linear-gradient(180deg, rgba(255, 255, 255, .22), rgba(255, 255, 255, 0) 55%), var(--primary-grad);
+    box-shadow: 0 8px 18px -8px rgba(36, 66, 214, .7), inset 0 1px 0 rgba(255, 255, 255, .3);
+  }
+}
+.nav-links a[aria-current="page"], .nav-cta .btn[aria-current="page"] { background: var(--primary-grad); border-color: transparent; }
+@media (min-width: 1101px) { .nav-links a[aria-current="page"] { background: transparent; } }
+.num-badge { background: var(--primary-grad); }
+.subject-chips button[aria-pressed="true"] { background: var(--blue); border-color: var(--blue); }
+.plan.is-now { box-shadow: 0 0 0 2px var(--blue), var(--shadow); }
+.bar > span, .subj-bars .bar > span { background: var(--blue); }
+.feature-demo .focus .bar > span, .guide-visual .focus .bar > span { background: var(--blue); }
+.subj-bars .bar > span { background: var(--c, var(--blue)); }
+.focus .bar > span { background: #fff; }
+.bar.is-full > span { background: var(--green); }
+.band { background: var(--mesh); }
+.band .btn-accent { background: #fff; color: var(--blue-ink); box-shadow: 0 8px 18px -10px rgba(22, 36, 140, .6); }
+.band .btn-accent:hover { background: #fff; color: var(--blue-ink); }
+.band .btn-ghost { background: rgba(255, 255, 255, .12); border-color: rgba(255, 255, 255, .55); }
+.nav-cta .btn, .nav-cta .btn:hover { background: var(--primary-grad); color: #fff; border-color: transparent; box-shadow: 0 6px 14px -8px rgba(36, 66, 214, .8); }
+
+/* one blue: every blue on the site comes from this scale (the M3 logo tile runs blue-hi to blue-deep) */
+:root {
+  --blue-hi: #5674FF;
+  --blue: #3B5BFF;
+  --blue-lo: #2442D6;
+  --blue-ink: #1F38B8;
+  --blue-deep: #1A2C9E;
+  --blue-soft: #E8EDFF;
+}
+#hero-demo .focus::before, #focus-slot .focus::before {
+  background: linear-gradient(180deg, rgba(36, 66, 214, .28), rgba(26, 44, 158, .62));
+}
+
+/* "ทำอันนี้ก่อน" card: same mesh as the logo tile instead of a photo */
+#hero-demo .focus, #focus-slot .focus { background: var(--mesh); }
+#hero-demo .focus::before, #focus-slot .focus::before {
+  background: linear-gradient(180deg, rgba(26, 44, 158, 0), rgba(26, 44, 158, .35));
+}
+
+/* pricing table on phones: keep the row label in view while scrolling */
+@media (max-width: 700px) {
+  .table-wrap tbody th, .table-wrap thead th:first-child { position: sticky; left: 0; z-index: 1; background: var(--card); }
+  .table-wrap thead th:first-child { background: var(--paper-2); }
+}
+
+/* FAQ: question text is one flex item so inline spans don't split it */
+.faq summary > span { flex: 1; min-width: 0; }
