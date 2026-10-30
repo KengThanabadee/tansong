@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ค้นหางาน — ทันส่ง</title>
+<meta name="description" content="ค้นหางานจากชื่องาน วิชา ช่องทางส่ง โน้ต และขั้นตอนย่อย พร้อมกรองตามวิชา ประเภท สถานะ และช่วงวันส่ง">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=Sarabun:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/style.css?v=6">
+<link rel="stylesheet" href="assets/theme.css?v=6">
+</head>
+<body data-page="search">
+
+<header class="site-header">
+  <div class="wrap nav-bar">
+    <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="lg0" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4A6DFF"/><stop offset="1" stop-color="#1E3CD8"/></linearGradient></defs><rect width="32" height="32" rx="9" fill="url(#lg0)"/><path d="M13.4 5h5.2M16 5v3.4" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M16 8.4A7.9 7.9 0 1 0 23.9 16.3" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/><path d="M12.2 16.2l3.2 3.2 9-9.2" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>ทันส่ง</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="เปิดเมนู"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
+    <nav class="nav-menu" id="nav-menu" aria-label="เมนูหลัก">
+      <ul class="nav-links">
+        <li><a href="index.html">หน้าแรก</a></li>
+        <li><a href="features.html">ฟีเจอร์</a></li>
+        <li><a href="students.html">เหมาะกับใคร</a></li>
+        <li><a href="how-to.html">วิธีใช้</a></li>
+        <li><a href="search.html" aria-current="page">ค้นหางาน</a></li>
+        <li><a href="pricing.html">ราคา</a></li>
+      </ul>
+      <div class="nav-cta"><a class="btn btn-accent btn-sm" href="board.html">งานของฉัน</a></div>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="search-hero">
+    <h1>ค้นหางาน</h1>
+    <p class="lead">ค้นได้จากชื่องาน วิชา ช่องทางส่ง โน้ต และขั้นตอนย่อย พิมพ์หลายคำเว้นวรรคเพื่อหางานที่มีทุกคำ</p>
+
+    <form class="search-form" id="search-form" role="search">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+        <label class="sr-only" for="sq">คำค้น</label>
+        <input class="input" type="search" id="sq" placeholder="เช่น รายงาน, สถิติ, อีเมล" autocomplete="off">
+      </div>
+      <button type="submit" class="btn btn-ink">ค้นหา</button>
+    </form>
+
+    <div class="filters">
+      <label>วิชา<select class="input" id="sf-subject"></select></label>
+      <label>ประเภท<select class="input" id="sf-type"></select></label>
+      <label>สถานะ
+        <select class="input" id="sf-status">
+          <option value="all">ทุกสถานะ</option>
+          <option value="open">ยังไม่ส่ง</option>
+          <option value="overdue">เลยกำหนด</option>
+          <option value="submitted">ส่งแล้ว</option>
+        </select>
+      </label>
+      <label>กำหนดส่ง
+        <select class="input" id="sf-range">
+          <option value="any">ทุกช่วง</option>
+          <option value="today">วันนี้</option>
+          <option value="7">ภายใน 7 วัน</option>
+          <option value="30">ภายใน 30 วัน</option>
+        </select>
+      </label>
+    </div>
+    <div class="suggest" id="suggest"></div>
+  </section>
+
+  <div class="result-bar">
+    <p id="result-count" aria-live="polite"></p>
+    <button type="button" class="btn-link" id="search-reset" hidden>ล้างคำค้นและตัวกรอง</button>
+  </div>
+  <ul class="results" id="results">
+    <li><noscript><p class="empty">การค้นหาต้องเปิด JavaScript ในเบราว์เซอร์</p></noscript></li>
+  </ul>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4A6DFF"/><stop offset="1" stop-color="#1E3CD8"/></linearGradient></defs><rect width="32" height="32" rx="9" fill="url(#lg1)"/><path d="M13.4 5h5.2M16 5v3.4" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M16 8.4A7.9 7.9 0 1 0 23.9 16.3" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/><path d="M12.2 16.2l3.2 3.2 9-9.2" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>ทันส่ง</a>
+        <p>รวมงานทุกวิชาไว้ที่เดียว เรียงตามเวลาส่ง และบอกว่าควรเริ่มงานไหนก่อน</p>
+      </div>
+      <ul class="foot-links">
+        <li><a href="index.html">หน้าแรก</a></li>
+        <li><a href="features.html">ฟีเจอร์</a></li>
+        <li><a href="students.html">เหมาะกับใคร</a></li>
+        <li><a href="how-to.html">วิธีใช้</a></li>
+        <li><a href="board.html">งานของฉัน</a></li>
+        <li><a href="search.html">ค้นหางาน</a></li>
+        <li><a href="task.html">รายละเอียดงาน</a></li>
+        <li><a href="pricing.html">ราคา</a></li>
+      </ul>
+    </div>
+    <p class="foot-note">ทันส่งเป็นแนวคิดธุรกิจในโครงงานรายวิชา TU107 ยังไม่ใช่บริการที่เปิดให้ใช้จริง รายการงานเก็บไว้ในเบราว์เซอร์ของคุณเท่านั้น</p>
+  </div>
+</footer>
+
+<script src="assets/app.js?v=6"></script>
+</body>
+</html>

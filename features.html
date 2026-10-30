@@ -1,73 +1,200 @@
 <!doctype html>
-<html lang="th"><head><meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>StudyFlow · ฟีเจอร์</title>
-  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
-  <style>
-    :root{--forest:#173f34;--cream:#faf7ef;--orange:#f5c99c;--ink:#20362e;--muted:#66756d}
-    *{box-sizing:border-box}
-    body{font-family:Sarabun,sans-serif;color:var(--ink);margin:0}
-    button,input,select{font:inherit}
-    button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #dd8f4b;outline-offset:3px}
-    .page[hidden], [hidden]{display:none!important}
-    .nav-button{border-radius:999px;padding:9px 14px;white-space:nowrap;font-weight:600;color:#35554a;transition:.2s}
-    .nav-button:hover,.nav-button.active{background:var(--forest);color:#fff}
-    .primary{background:var(--forest);color:white;border-radius:13px;padding:12px 20px;font-weight:700;transition:transform .2s,background .2s}
-    .primary:hover{background:#285e49;transform:translateY(-2px)}
-    .secondary{background:#f1e5d5;color:var(--forest);border-radius:12px;padding:10px 17px;font-weight:700}
-    .secondary:hover{background:#ecd3b8}
-    .surface{background:white;border:1px solid #e7e7db;border-radius:20px;box-shadow:0 8px 30px #173f3409}
-    .field{width:100%;border:1px solid #ccd6cd;border-radius:11px;padding:10px 12px;background:white;min-height:44px}
-    .field:focus{outline:2px solid #cf975d;outline-offset:1px}
-    .field-label{display:block;font-weight:700;margin-bottom:6px}
-    .eyebrow{letter-spacing:.12em;text-transform:uppercase;font-size:12px;font-weight:800;color:#a05e2e}
-    .page{animation:appear .35s ease both}
-    @keyframes appear{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-    .task-item{width:100%;text-align:left;border:1px solid #e2e8df;background:#fff;border-radius:15px;padding:16px;transition:.2s}
-    .task-item:hover,.task-item.selected{border-color:#487661;box-shadow:0 4px 16px #173f3414}
-    .chip{display:inline-block;border-radius:999px;padding:4px 10px;background:#f2f4ed;font-size:12px;font-weight:700}
-    details[open] summary{color:var(--forest)}
-    summary{cursor:pointer;font-weight:700}
-    .hero-pattern{background-image:radial-gradient(#f6e5c9 1px,transparent 1px);background-size:22px 22px}
-    @media(max-width:640px){.nav-scroll{overflow-x:auto;scrollbar-width:none}.nav-scroll::-webkit-scrollbar{display:none}}
-  
-a.primary,a.secondary,a.nav-button{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}a:focus-visible,button:focus-visible{outline:3px solid #b75d27;outline-offset:3px}@media(min-width:1024px){a.mobile-demo-link{display:none}}
-</style>
-  <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js" type="text/javascript"></script>
-  <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
-  </head>
- <body class="w-full min-h-screen" style="background: rgb(250, 247, 239);">
-  <header class="canva-header w-full border-b border-[#e1e6d9] bg-[#faf7ef] sticky top-0 z-30" style="background: rgb(250, 247, 239);">
-   <div class="max-w-7xl mx-auto px-4 md:px-8 py-3 flex flex-col lg:flex-row lg:items-center gap-3">
-    <div class="flex items-center justify-between">
-     <a class="font-extrabold text-2xl tracking-tight text-[#173f34] flex items-center gap-2" aria-label="ไปหน้าแรก" href="index.html"><span class="w-9 h-9 rounded-xl bg-[#173f34] text-[#faf7ef] grid place-items-center text-lg">S</span>StudyFlow</a> <a href="demo.html" class="primary mobile-demo-link">ลองจัดงาน</a>
-    </div>
-    <nav class="nav-scroll flex gap-1 lg:ml-auto pb-1 lg:pb-0" aria-label="เมนูหลัก">
-     <a class="nav-button" style="font-weight: 400; font-style: normal; font-size: 16px;" href="index.html">หน้าแรก</a> <a class="nav-button" style="font-weight: 400; font-style: normal; font-size: 16px;" href="problem.html">ปัญหา</a> <a class="nav-button" style="font-weight: 400; font-style: normal; font-size: 16px;" href="solution.html">บริการ</a> <a class="nav-button active" style="font-weight: 400; font-style: normal; font-size: 16px;" href="features.html" aria-current="page">ฟีเจอร์</a> <a class="nav-button" style="font-weight: 400; font-style: normal; font-size: 16px;" href="usage.html">วิธีใช้</a> <a class="nav-button" style="font-weight: 400; font-style: normal; font-size: 16px;" href="demo.html">ลองจัดงาน</a> <a class="nav-button" style="font-weight: 400; font-style: normal; font-size: 16px;" href="plans.html">แพ็กเกจ</a> <a class="nav-button" style="font-weight: 400; font-style: normal; font-size: 16px;" href="faq.html">คำถาม</a>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ฟีเจอร์ — ทันส่ง</title>
+<meta name="description" content="ฟีเจอร์ของทันส่ง: รวมงานทุกวิชา เรียงตามเวลาส่ง การ์ดทำอันนี้ก่อน ขั้นตอนย่อยและความคืบหน้า ค้นหาและกรอง">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=Sarabun:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/style.css?v=6">
+<link rel="stylesheet" href="assets/theme.css?v=6">
+</head>
+<body data-page="features">
+
+<header class="site-header">
+  <div class="wrap nav-bar">
+    <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="lg0" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4A6DFF"/><stop offset="1" stop-color="#1E3CD8"/></linearGradient></defs><rect width="32" height="32" rx="9" fill="url(#lg0)"/><path d="M13.4 5h5.2M16 5v3.4" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M16 8.4A7.9 7.9 0 1 0 23.9 16.3" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/><path d="M12.2 16.2l3.2 3.2 9-9.2" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>ทันส่ง</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="เปิดเมนู"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
+    <nav class="nav-menu" id="nav-menu" aria-label="เมนูหลัก">
+      <ul class="nav-links">
+        <li><a href="index.html">หน้าแรก</a></li>
+        <li><a href="features.html" aria-current="page">ฟีเจอร์</a></li>
+        <li><a href="students.html">เหมาะกับใคร</a></li>
+        <li><a href="how-to.html">วิธีใช้</a></li>
+        <li><a href="search.html">ค้นหางาน</a></li>
+        <li><a href="pricing.html">ราคา</a></li>
+      </ul>
+      <div class="nav-cta"><a class="btn btn-accent btn-sm" href="board.html">ลองใช้ทันส่ง</a></div>
     </nav>
-   </div>
-  </header>
-  <main class="w-full max-w-7xl mx-auto px-4 md:px-8 py-8 md:py-12">
-   <section class="page" id="page-features" aria-labelledby="features-heading">
-    <p class="canva-text eyebrow" style="font-weight: 400; font-style: normal; font-size: 16px;">เครื่องมือที่จำเป็น</p>
-    <h1 id="features-heading" class="canva-text font-extrabold text-[#173f34] mt-3 mb-8" style="color: rgb(23, 63, 52); font-weight: 800; font-style: normal; font-size: 32px;">ฟีเจอร์ที่ใช้ได้จริง</h1>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-     <article class="surface p-6">
-      <h2 class="canva-text font-bold mb-2" style="font-weight: 700; font-style: normal; font-size: 24px;">เรียงตามวันส่ง</h2>
-      <p class="canva-text text-[#52645a] mb-5" style="color: rgb(82, 100, 90); font-weight: 400; font-style: normal; font-size: 16px;">เห็นงานที่ต้องส่งก่อนอยู่บนสุด</p><a class="canva-button secondary" style="background: rgb(241, 229, 213); color: rgb(23, 63, 52); font-weight: 400; font-style: normal; font-size: 16px;" href="demo.html">ทดลองใช้ →</a>
-     </article>
-     <article class="surface p-6">
-      <h2 class="canva-text font-bold mb-2" style="font-weight: 700; font-style: normal; font-size: 24px;">ค้นหาและกรอง</h2>
-      <p class="canva-text text-[#52645a] mb-5" style="color: rgb(82, 100, 90); font-weight: 400; font-style: normal; font-size: 16px;">หางานด้วยชื่อ วิชา หรือสถานะ</p><a class="canva-button secondary" style="background: rgb(241, 229, 213); color: rgb(23, 63, 52); font-weight: 400; font-style: normal; font-size: 16px;" href="demo.html">ทดลองใช้ →</a>
-     </article>
-     <article class="surface p-6">
-      <h2 class="canva-text font-bold mb-2" style="font-weight: 700; font-style: normal; font-size: 24px;">ติดตามขั้นตอน</h2>
-      <p class="canva-text text-[#52645a] mb-5" style="color: rgb(82, 100, 90); font-weight: 400; font-style: normal; font-size: 16px;">ติ๊กงานย่อยและดูความคืบหน้า</p><a class="canva-button secondary" style="background: rgb(241, 229, 213); color: rgb(23, 63, 52); font-weight: 400; font-style: normal; font-size: 16px;" href="demo.html">ทดลองใช้ →</a>
-     </article>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="wrap">
+      <p class="eyebrow">ฟีเจอร์</p>
+      <h1>ทุกอย่างที่<span class="bn">ทันส่ง</span>ทำได้</h1>
+      <p class="lead">จดงานครั้งเดียว ที่เหลือ<span class="bn">ทันส่ง</span>เรียงให้ บอกงานที่ควรเริ่มก่อน และนับเวลาถอยหลังจนถึงวันส่ง</p>
     </div>
-   </section>
-   </main>
-  <footer class="canva-footer w-full border-t border-[#e1e6d9] py-6 px-4 text-center" style="background: rgb(250, 247, 239);">
-   <p class="canva-text text-[#66756d]" style="color: rgb(102, 117, 109); font-weight: 400; font-style: normal; font-size: 16px;">StudyFlow · แนวคิดธุรกิจโครงงาน TU107</p>
-  </footer>
-  </body></html>
+  </section>
+
+  <div class="wrap">
+    <section class="feature">
+      <div>
+        <p class="eyebrow">รวม</p>
+        <h2>รายการเดียวสำหรับงานทุกวิชา</h2>
+        <p>หนึ่งงานเก็บชื่องาน วิชา ประเภท วันและเวลาส่ง ช่องทางส่ง ลิงก์ และโน้ตไว้ด้วยกัน เวลาเห็นประกาศในแชตหรือได้ยินอาจารย์บอกท้ายคาบ ก็จดลงที่เดียวได้เลย</p>
+        <p>แต่ละวิชาได้สีประจำโดยอัตโนมัติ ช่องวิชาแนะนำชื่อที่เคยพิมพ์ไว้ ไม่ต้องพิมพ์ซ้ำทุกครั้ง</p>
+        <a class="btn btn-ink" href="board.html#add">ลองเพิ่มงาน</a>
+      </div>
+      <div class="feature-demo" aria-hidden="true">
+        <div class="mock-field"><span>ชื่องาน</span><div>รายงานกลุ่ม: การใช้จ่ายรายเดือนของนักศึกษา</div></div>
+        <div class="mock-row">
+          <div class="mock-field"><span>วิชา</span><div>สถิติเบื้องต้น</div></div>
+          <div class="mock-field"><span>ประเภท</span><div>รายงาน</div></div>
+        </div>
+        <div class="mock-row">
+          <div class="mock-field"><span>วันส่ง</span><div>วันศุกร์</div></div>
+          <div class="mock-field"><span>เวลาส่ง</span><div>23:59</div></div>
+        </div>
+        <div class="mock-field"><span>ส่งที่ไหน</span><div>ระบบเรียนออนไลน์ ส่งคนเดียวแทนทั้งกลุ่ม</div></div>
+      </div>
+    </section>
+
+    <section class="feature">
+      <div>
+        <p class="eyebrow">เรียง</p>
+        <h2>เรียงตามวันและเวลาที่ต้องส่ง</h2>
+        <p>รายการงานจัดเป็นกลุ่ม <b>เลยกำหนด</b> <b>ส่งวันนี้</b> <b>ส่งพรุ่งนี้</b> <b>ภายใน 7 วัน</b> และ <b>หลังจากนั้น</b> ทุกงานบอกเวลาที่เหลือ เช่น “อีก 5 ชม.” สีของป้ายเข้มขึ้นเมื่อใกล้ถึงกำหนด</p>
+        <p>เปลี่ยนการเรียงเป็นไกลกำหนดก่อน คืบหน้าน้อยก่อน หรือเพิ่มล่าสุดก่อนได้ เวลาที่เหลืออัปเดตเองทุกนาทีขณะเปิดหน้าไว้</p>
+        <a class="btn btn-ink" href="board.html">ดูรายการงาน</a>
+      </div>
+      <div class="feature-demo" aria-hidden="true">
+        <p class="group-head is-overdue" style="margin:0">เลยกำหนด <span class="n">1</span></p>
+        <div class="mini-task" style="--c:#9B4DCA"><strong>สรุปข่าวเศรษฐกิจ 1 หน้า</strong><span class="subj"><i></i><span>เศรษฐศาสตร์จุลภาค · เมื่อวาน 16:00 น.</span></span><span class="chip chip-overdue">เลยกำหนด 1 วัน</span></div>
+        <p class="group-head" style="margin:8px 0 0">ส่งวันนี้ <span class="n">1</span></p>
+        <div class="mini-task" style="--c:#D9467A"><strong>แบบฝึกหัดบทที่ 4 อนุพันธ์</strong><span class="subj"><i></i><span>แคลคูลัส 1 · วันนี้ 23:59 น.</span></span><span class="chip chip-today">อีก 6 ชม.</span></div>
+        <p class="group-head" style="margin:8px 0 0">ส่งพรุ่งนี้ <span class="n">1</span></p>
+        <div class="mini-task" style="--c:#3C8A3E"><strong>ควิซการอ่าน Unit 6</strong><span class="subj"><i></i><span>ภาษาอังกฤษเพื่อการสื่อสาร · พรุ่งนี้ 09:00 น.</span></span><span class="chip chip-tomorrow">อีก 15 ชม.</span></div>
+      </div>
+    </section>
+
+    <section class="feature">
+      <div>
+        <p class="eyebrow">เริ่ม</p>
+        <h2>การ์ด “ทำอันนี้ก่อน”</h2>
+        <p><span class="bn">ทันส่ง</span>หยิบงานที่ยังไม่ส่งและถึงกำหนดเร็วที่สุดขึ้นมาไว้บนสุด พร้อมขั้นตอนถัดไปที่ยังไม่ได้ทำ ติ๊กจากการ์ดได้ทันที แล้วการ์ดจะเลื่อนไปขั้นต่อไปเอง</p>
+        <p>ถ้างานยังไม่ได้แบ่งขั้นตอน การ์ดจะมีปุ่มให้แบ่งก่อน</p>
+        <a class="btn btn-ink" href="board.html">ลองติ๊กขั้นตอน</a>
+      </div>
+      <div class="feature-demo" aria-hidden="true">
+        <div class="focus" style="--c:#D9467A">
+          <p class="focus-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg>ทำอันนี้ก่อน</p>
+          <p class="task-title" style="font-size:22px">แบบฝึกหัดบทที่ 4 อนุพันธ์</p>
+          <div class="focus-meta"><span class="subj" style="--c:#D9467A"><i></i><span>แคลคูลัส 1</span></span><span>วันนี้ 23:59 น.</span><span class="chip chip-today">อีก 6 ชม.</span></div>
+          <div class="focus-next"><small>ขั้นต่อไป · ติ๊กเมื่อทำเสร็จ</small><label><span class="check"></span><span>ทำข้อ 11–20</span></label></div>
+          <div class="focus-prog"><div class="bar"><span style="width:25%"></span></div><span>1/4 ขั้น</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature">
+      <div>
+        <p class="eyebrow">แบ่ง</p>
+        <h2>ขั้นตอนย่อยและความคืบหน้า</h2>
+        <p>แบ่งงานใหญ่เป็นขั้นที่ทำเสร็จได้ในครั้งเดียว ติ๊กแล้วแถบความคืบหน้าขยับตาม สถานะของงานเปลี่ยนจาก ยังไม่เริ่ม เป็น กำลังทำ และ ทำครบแล้ว รอส่ง</p>
+        <p>แยก “ทำครบ” กับ “ส่งแล้ว” ออกจากกัน งานที่ทำเสร็จแต่ยังไม่อัปโหลดจึงไม่หลุดจากรายการ</p>
+        <a class="btn btn-ink" href="task.html">เปิดดูรายละเอียดงาน</a>
+      </div>
+      <div class="feature-demo" aria-hidden="true">
+        <div class="task" style="--c:#1E9E8F">
+          <div class="task-top"><span class="subj" style="--c:#1E9E8F"><i></i><span>สถิติเบื้องต้น</span></span><span class="type">รายงาน</span><span class="chip chip-week">อีก 5 วัน</span></div>
+          <p class="task-title">รายงานกลุ่ม: การใช้จ่ายรายเดือนของนักศึกษา</p>
+          <div class="task-prog"><div class="bar"><span style="width:33%"></span></div><span class="count">2/6 ขั้น</span></div>
+          <ul class="task-steps">
+            <li class="step-item is-done"><label><span class="check is-on"></span><span>แบ่งหัวข้อกับเพื่อนในกลุ่ม</span></label></li>
+            <li class="step-item is-done"><label><span class="check is-on"></span><span>ทำแบบสอบถามออนไลน์</span></label></li>
+            <li class="step-item"><label><span class="check"></span><span>เก็บข้อมูลให้ครบ 30 คน</span></label></li>
+            <li class="step-item"><label><span class="check"></span><span>ทำตารางและกราฟสรุป</span></label></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature">
+      <div>
+        <p class="eyebrow">หา</p>
+        <h2>ค้นหาและกรองงาน</h2>
+        <p>ในหน้างานของฉัน กรองด้วยคำค้น วิชา และสถานะได้ทันที ส่วนหน้าค้นหางานค้นลึกถึงโน้ตและขั้นตอนย่อย ไฮไลต์คำที่พบ และกรองตามประเภทงานกับช่วงวันส่งได้</p>
+        <p>การค้นหาที่ใช้บ่อยบุ๊กมาร์กไว้เปิดซ้ำได้</p>
+        <a class="btn btn-ink" href="search.html?q=%E0%B8%81%E0%B8%A5%E0%B8%B8%E0%B9%88%E0%B8%A1">ลองค้นคำว่า “กลุ่ม”</a>
+      </div>
+      <div class="feature-demo" aria-hidden="true">
+        <div class="search-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><div class="input" style="padding-left:40px;display:flex;align-items:center">กลุ่ม</div></div>
+        <div class="task" style="--c:#3D56D6">
+          <div class="task-top"><span class="subj" style="--c:#3D56D6"><i></i><span>การเขียนโปรแกรมเบื้องต้น</span></span><span class="type">โปรเจกต์</span><span class="chip">อีก 20 วัน</span></div>
+          <p class="task-title">โปรเจกต์ปลายภาค: ต้นแบบระบบจองห้องติว</p>
+          <p class="match-note" style="margin:4px 0 0">พบในขั้นตอน: ส่งหัวข้อและรายชื่อสมาชิก<mark>กลุ่ม</mark></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature">
+      <div>
+        <p class="eyebrow">เก็บ</p>
+        <h2>ไม่ต้องสมัคร ลบแล้วย้อนกลับได้</h2>
+        <p>รายการงานบันทึกในเบราว์เซอร์ทันทีที่แก้ ปิดแล้วเปิดใหม่ก็ยังอยู่ ไม่ต้องสร้างบัญชี และรายการไม่ถูกส่งออกไปที่ใด</p>
+        <p>เมื่อลบงาน ลบขั้นตอน หรือเปลี่ยนสถานะ ถ้ากดผิด กด “ย้อนกลับ” ได้ทันที</p>
+        <a class="btn btn-ink" href="board.html">ไปที่งานของฉัน</a>
+      </div>
+      <div class="feature-demo" aria-hidden="true">
+        <div class="mock-toast"><span>ลบ “ควิซการอ่าน Unit 6” แล้ว</span><b>ย้อนกลับ</b></div>
+      </div>
+    </section>
+  </div>
+
+  <section class="section" style="padding-top:40px">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">สิ่งที่กำลังจะมา</p>
+        <h2>ฟีเจอร์ที่กำลังจะมา</h2>
+      </div>
+      <ul class="not-yet">
+        <li><span class="tag tag-later">เร็ว ๆ นี้</span><div><strong>เปิดรายการเดียวกันได้หลายเครื่อง</strong><br><span class="muted">เพิ่มงานในคอม แล้วเปิดดูต่อในมือถือได้ทันที</span></div></li>
+        <li><span class="tag tag-later">เร็ว ๆ นี้</span><div><strong>แจ้งเตือนก่อนถึงกำหนด</strong><br><span class="muted">เตือนล่วงหน้าเมื่องานใกล้ถึงกำหนด ไม่ต้องคอยเปิดเว็บเช็กเอง</span></div></li>
+        <li><span class="tag tag-later">เร็ว ๆ นี้</span><div><strong>แชร์งานกลุ่มกับเพื่อน</strong><br><span class="muted">ทั้งกลุ่มเห็นรายการเดียวกัน ใครติ๊กขั้นไหนเพื่อนก็เห็น</span></div></li>
+        <li><span class="tag tag-later">เร็ว ๆ นี้</span><div><strong>นำเข้างานจากปฏิทินหรือระบบเรียนออนไลน์</strong><br><span class="muted">ดึงกำหนดส่งเข้ามาเอง ไม่ต้องพิมพ์ทีละงาน</span></div></li>
+      </ul>
+      <p><a href="pricing.html">ดูแพ็กเกจ Plus →</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4A6DFF"/><stop offset="1" stop-color="#1E3CD8"/></linearGradient></defs><rect width="32" height="32" rx="9" fill="url(#lg1)"/><path d="M13.4 5h5.2M16 5v3.4" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M16 8.4A7.9 7.9 0 1 0 23.9 16.3" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/><path d="M12.2 16.2l3.2 3.2 9-9.2" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>ทันส่ง</a>
+        <p>รวมงานทุกวิชาไว้ที่เดียว เรียงตามเวลาส่ง และบอกว่าควรเริ่มงานไหนก่อน</p>
+      </div>
+      <ul class="foot-links">
+        <li><a href="index.html">หน้าแรก</a></li>
+        <li><a href="features.html">ฟีเจอร์</a></li>
+        <li><a href="students.html">เหมาะกับใคร</a></li>
+        <li><a href="how-to.html">วิธีใช้</a></li>
+        <li><a href="board.html">งานของฉัน</a></li>
+        <li><a href="search.html">ค้นหางาน</a></li>
+        <li><a href="task.html">รายละเอียดงาน</a></li>
+        <li><a href="pricing.html">ราคา</a></li>
+      </ul>
+    </div>
+    <p class="foot-note">ทันส่งเป็นแนวคิดธุรกิจในโครงงานรายวิชา TU107 ยังไม่ใช่บริการที่เปิดให้ใช้จริง รายการงานเก็บไว้ในเบราว์เซอร์ของคุณเท่านั้น</p>
+  </div>
+</footer>
+
+<script src="assets/app.js?v=6"></script>
+</body>
+</html>
