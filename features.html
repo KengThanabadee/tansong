@@ -8,9 +8,9 @@
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=Noto+Sans+Thai+Looped:wght@400;500;600&family=Sarabun:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="assets/style.css?v=9">
-<link rel="stylesheet" href="assets/theme.css?v=9">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=Sarabun:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/style.css?v=12">
+<link rel="stylesheet" href="assets/theme.css?v=12">
 </head>
 <body data-page="features">
 
@@ -46,7 +46,7 @@
       <div>
         <p class="eyebrow">รวม</p>
         <h2>รายการเดียวสำหรับงานทุกวิชา</h2>
-        <p>หนึ่งงานเก็บชื่องาน วิชา ประเภท วันและเวลาส่ง ช่องทางส่ง ลิงก์ และโน้ตไว้ด้วยกัน เวลาเห็นประกาศในแชตหรือได้ยินอาจารย์บอกท้ายคาบ ก็จดลงที่เดียวได้เลย</p>
+        <p>หนึ่งงานเก็บชื่องาน วิชา ประเภท วันและเวลาส่ง <span class="nw">ช่องทางส่ง</span> ลิงก์ และโน้ตไว้ด้วยกัน เวลาเห็นประกาศในแชตหรือได้ยินอาจารย์บอกท้ายคาบ ก็จดลงที่เดียวได้เลย</p>
         <p>แต่ละวิชาได้สีประจำโดยอัตโนมัติ ช่องวิชาแนะนำชื่อที่เคยพิมพ์ไว้ ไม่ต้องพิมพ์ซ้ำทุกครั้ง</p>
         <a class="btn btn-ink" href="board.html#add">ลองเพิ่มงาน</a>
       </div>
@@ -68,13 +68,13 @@
       <div>
         <p class="eyebrow">เรียง</p>
         <h2>เรียงตามวันและเวลาที่ต้องส่ง</h2>
-        <p>รายการงานจัดเป็นกลุ่ม <b>เลยกำหนด</b> <b>ส่งวันนี้</b> <b>ส่งพรุ่งนี้</b> <b>ภายใน 7 วัน</b> และ <b>หลังจากนั้น</b> ทุกงานบอกเวลาที่เหลือ เช่น “อีก 5 ชม.” สีของป้ายเข้มขึ้นเมื่อใกล้ถึงกำหนด</p>
+        <p>รายการงานจัดเป็นกลุ่ม <b><span class="nw">เลยกำหนด</span></b> <b>ส่งวันนี้</b> <b>ส่งพรุ่งนี้</b> <b>ภายใน 7 วัน</b> และ <b>หลังจากนั้น</b> ทุกงานบอกเวลาที่เหลือ เช่น “อีก 5 ชม.” สีของป้ายเข้มขึ้นเมื่อใกล้ถึงกำหนด</p>
         <p>เปลี่ยนการเรียงเป็นไกลกำหนดก่อน คืบหน้าน้อยก่อน หรือเพิ่มล่าสุดก่อนได้ เวลาที่เหลืออัปเดตเองทุกนาทีขณะเปิดหน้าไว้</p>
         <a class="btn btn-ink" href="board.html">ดูรายการงาน</a>
       </div>
       <div class="feature-demo" aria-hidden="true">
-        <p class="group-head is-overdue" style="margin:0">เลยกำหนด <span class="n">1</span></p>
-        <div class="mini-task" style="--c:#9B4DCA"><strong>สรุปข่าวเศรษฐกิจ 1 หน้า</strong><span class="subj"><i></i><span>เศรษฐศาสตร์จุลภาค · เมื่อวาน 16:00 น.</span></span><span class="chip chip-overdue">เลยกำหนด 1 วัน</span></div>
+        <p class="group-head is-overdue" style="margin:0"><span class="nw">เลยกำหนด</span> <span class="n">1</span></p>
+        <div class="mini-task" style="--c:#9B4DCA"><strong>สรุปข่าวเศรษฐกิจ 1 หน้า</strong><span class="subj"><i></i><span>เศรษฐศาสตร์จุลภาค · เมื่อวาน 16:00 น.</span></span><span class="chip chip-overdue"><span class="nw">เลยกำหนด</span> 1 วัน</span></div>
         <p class="group-head" style="margin:8px 0 0">ส่งวันนี้ <span class="n">1</span></p>
         <div class="mini-task" style="--c:#D9467A"><strong>แบบฝึกหัดบทที่ 4 อนุพันธ์</strong><span class="subj"><i></i><span>แคลคูลัส 1 · วันนี้ 23:59 น.</span></span><span class="chip chip-today">อีก 6 ชม.</span></div>
         <p class="group-head" style="margin:8px 0 0">ส่งพรุ่งนี้ <span class="n">1</span></p>
@@ -85,8 +85,8 @@
     <section class="feature">
       <div>
         <p class="eyebrow">เริ่ม</p>
-        <h2>การ์ด “ทำอันนี้ก่อน”</h2>
-        <p><span class="bn">ทันส่ง</span>หยิบงานที่ยังไม่ส่งและถึงกำหนดเร็วที่สุดขึ้นมาไว้บนสุด พร้อมขั้นตอนถัดไปที่ยังไม่ได้ทำ ติ๊กจากการ์ดได้ทันที แล้วการ์ดจะเลื่อนไปขั้นต่อไปเอง</p>
+        <h2>การ์ด <span class="nw">“ทำอันนี้ก่อน”</span></h2>
+        <p><span class="bn">ทันส่ง</span>หยิบงานที่ยังไม่ส่งและถึงกำหนดเร็วที่สุดขึ้นมาไว้บนสุด พร้อมขั้นตอนถัดไปที่ยังไม่ได้ทำ ติ๊กจากการ์ดได้ทันที แล้วการ์ดจะเลื่อนไป<span class="nw">ขั้นต่อไป</span>เอง</p>
         <p>ถ้างานยังไม่ได้แบ่งขั้นตอน การ์ดจะมีปุ่มให้แบ่งก่อน</p>
         <a class="btn btn-ink" href="board.html">ลองติ๊กขั้นตอน</a>
       </div>
@@ -95,7 +95,7 @@
           <p class="focus-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg>ทำอันนี้ก่อน</p>
           <p class="task-title" style="font-size:22px">แบบฝึกหัดบทที่ 4 อนุพันธ์</p>
           <div class="focus-meta"><span class="subj" style="--c:#D9467A"><i></i><span>แคลคูลัส 1</span></span><span>วันนี้ 23:59 น.</span><span class="chip chip-today">อีก 6 ชม.</span></div>
-          <div class="focus-next"><small>ขั้นต่อไป · ติ๊กเมื่อทำเสร็จ</small><label><span class="check"></span><span>ทำข้อ 11–20</span></label></div>
+          <div class="focus-next"><small><span class="nw">ขั้นต่อไป</span> · ติ๊กเมื่อทำเสร็จ</small><label><span class="check"></span><span>ทำข้อ 11–20</span></label></div>
           <div class="focus-prog"><div class="bar"><span style="width:25%"></span></div><span>1/4 ขั้น</span></div>
         </div>
       </div>
@@ -104,8 +104,8 @@
     <section class="feature">
       <div>
         <p class="eyebrow">แบ่ง</p>
-        <h2>ขั้นตอนย่อยและความคืบหน้า</h2>
-        <p>แบ่งงานใหญ่เป็นขั้นที่ทำเสร็จได้ในครั้งเดียว ติ๊กแล้วแถบความคืบหน้าขยับตาม สถานะของงานเปลี่ยนจาก ยังไม่เริ่ม เป็น กำลังทำ และ ทำครบแล้ว รอส่ง</p>
+        <h2>ขั้นตอนย่อยและ<span class="nw">ความคืบหน้า</span></h2>
+        <p>แบ่งงานใหญ่เป็นขั้นที่ทำเสร็จได้ในครั้งเดียว ติ๊กแล้วแถบ<span class="nw">ความคืบหน้า</span>ขยับตาม สถานะของงานเปลี่ยนจาก ยังไม่เริ่ม เป็น กำลังทำ และ ทำครบแล้ว รอส่ง</p>
         <p>แยก “ทำครบ” กับ “ส่งแล้ว” ออกจากกัน งานที่ทำเสร็จแต่ยังไม่อัปโหลดจึงไม่หลุดจากรายการ</p>
         <a class="btn btn-ink" href="task.html">เปิดดูรายละเอียดงาน</a>
       </div>
@@ -163,10 +163,10 @@
         <h2>ฟีเจอร์ที่กำลังจะมา</h2>
       </div>
       <ul class="not-yet">
-        <li><span class="tag tag-later">เร็ว ๆ นี้</span><div><strong>เปิดรายการเดียวกันได้หลายเครื่อง</strong><br><span class="muted">เพิ่มงานในคอม แล้วเปิดดูต่อในมือถือได้ทันที</span></div></li>
+        <li><span class="tag tag-later">เร็ว ๆ นี้</span><div><strong>เปิดรายการเดียวกันได้หลายเครื่อง</strong><br><span class="muted">เพิ่มงานในคอม แล้วเปิดดูต่อ<span class="nw">ในมือถือ</span>ได้ทันที</span></div></li>
         <li><span class="tag tag-later">เร็ว ๆ นี้</span><div><strong>แจ้งเตือนก่อนถึงกำหนด</strong><br><span class="muted">เตือนล่วงหน้าเมื่องานใกล้ถึงกำหนด ไม่ต้องคอยเปิดเว็บเช็กเอง</span></div></li>
-        <li><span class="tag tag-later">เร็ว ๆ นี้</span><div><strong>แชร์งานกลุ่มกับเพื่อน</strong><br><span class="muted">ทั้งกลุ่มเห็นรายการเดียวกัน ใครติ๊กขั้นไหนเพื่อนก็เห็น</span></div></li>
-        <li><span class="tag tag-later">เร็ว ๆ นี้</span><div><strong>นำเข้างานจากปฏิทินหรือระบบเรียนออนไลน์</strong><br><span class="muted">ดึงกำหนดส่งเข้ามาเอง ไม่ต้องพิมพ์ทีละงาน</span></div></li>
+        <li><span class="tag tag-later">เร็ว ๆ นี้</span><div><strong>แชร์งานกลุ่มกับเพื่อน</strong><br><span class="muted">ทั้งกลุ่มเห็นรายการเดียวกัน ใครติ๊ก<span class="nw">ขั้นไหน</span>เพื่อนก็เห็น</span></div></li>
+        <li><span class="tag tag-later">เร็ว ๆ นี้</span><div><strong>นำเข้างานจากปฏิทินหรือระบบเรียนออนไลน์</strong><br><span class="muted">ดึงกำหนดส่งเข้ามาเอง ไม่ต้องพิมพ์<span class="nw">ทีละงาน</span></span></div></li>
       </ul>
       <p><a href="pricing.html">ดูแพ็กเกจ Plus →</a></p>
     </div>
@@ -195,6 +195,6 @@
   </div>
 </footer>
 
-<script src="assets/app.js?v=9"></script>
+<script src="assets/app.js?v=12"></script>
 </body>
 </html>

@@ -596,8 +596,9 @@ th, td { padding: 12px 18px; }
 .bn { color: var(--blue); font-weight: 600; white-space: nowrap; }
 
 /* type: looped Thai for reading, Anuphan for headings and labels */
-:root { --f-body: 'Noto Sans Thai Looped', 'Sarabun', system-ui, sans-serif; }
-body { line-height: 1.75; }
+:root { --f-body: 'Sarabun', system-ui, sans-serif; }
+body { font-size: 16px; line-height: 1.75; }
+@media (min-width: 1600px) { body { font-size: 17px; } }
 h1, .page-hero h1, .hero h1, .board-head h1 { font-weight: 600; }
 h2, .tile-head h2 { font-weight: 600; }
 h3, .task-title, .focus h2, .focus h3 { font-weight: 600; }
@@ -651,3 +652,14 @@ h3, .task-title, .focus h2, .focus h3 { font-weight: 600; }
 @media (prefers-reduced-motion: reduce) {
   .pill-ready .nav-pill, .site-header .nav-menu { transition: none !important; }
 }
+
+/* hierarchy pass: clearer labels, darker reading text, solid prices */
+.eyebrow, .page-hero .eyebrow { font: 500 15px/1.4 var(--f-head); color: var(--ink); letter-spacing: 0; }
+.lead, .persona p, .pillar p, .feature p { color: #3A3C43; }
+.plan .price { font-weight: 600; font-size: 40px; letter-spacing: -.02em; }
+.plan .price.price-text { font-weight: 500; font-size: 26px; }
+
+/* Thai line breaks: keep compound words together, avoid one-word last lines */
+.nw { white-space: nowrap; }
+p, li, dd, summary, td, th, .muted { text-wrap: pretty; }
+h1, h2, h3 { text-wrap: balance; }
