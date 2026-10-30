@@ -5,12 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>เหมาะกับใคร — ทันส่ง</title>
 <meta name="description" content="กลุ่มเป้าหมายของทันส่งและประโยชน์ที่นักศึกษาได้รับเมื่อรวมงานทุกวิชาไว้ในรายการเดียว">
+<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=Sarabun:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="assets/style.css?v=17">
-<link rel="stylesheet" href="assets/theme.css?v=17">
+<link rel="stylesheet" href="assets/style.css?v=19">
+<link rel="stylesheet" href="assets/theme.css?v=19">
 </head>
 <body data-page="students">
 
@@ -24,6 +25,7 @@
         <li><a href="features.html">ฟีเจอร์</a></li>
         <li><a href="students.html" aria-current="page">เหมาะกับใคร</a></li>
         <li><a href="how-to.html">วิธีใช้</a></li>
+        <li><a href="board.html">งานของฉัน</a></li>
         <li><a href="search.html">ค้นหางาน</a></li>
         <li><a href="pricing.html">ราคา</a></li>
       </ul>
@@ -82,11 +84,11 @@
             <tr><th scope="col" style="width:30%">สถานการณ์</th><th scope="col">วิธีเดิม</th><th scope="col">เมื่อใช้<span class="bn">ทันส่ง</span></th></tr>
           </thead>
           <tbody>
-            <tr><th scope="row">คืนก่อนนอน อยากรู้ว่าพรุ่งนี้ต้องส่งอะไร</th><td>ไล่เปิดแชตกลุ่ม ระบบเรียนออนไลน์ และรูปในเครื่อง</td><td>เปิดหน้างานของฉัน แล้วดูกลุ่ม “ส่งพรุ่งนี้”</td></tr>
-            <tr><th scope="row">ได้รับรายงานกลุ่มชิ้นใหญ่</th><td>รู้แค่วันส่ง ไม่รู้ว่าควรเริ่มจากตรงไหน</td><td>แบ่งเป็นขั้นตอนย่อยตั้งแต่วันที่ได้รับงาน</td></tr>
-            <tr><th scope="row">มีเวลาว่าง 30 นาทีระหว่างคาบ</th><td>ใช้เวลาส่วนหนึ่งไปกับการคิดว่าจะทำอะไร</td><td>การ์ด <span class="nw">“ทำอันนี้ก่อน”</span> บอก<span class="nw">ขั้นต่อไป</span>ของงานที่ด่วนที่สุด</td></tr>
-            <tr><th scope="row">จำไม่ได้ว่างานนี้ส่ง<span class="nw">ช่องทางไหน</span></th><td>ย้อนหาในแชตหรืออีเมล</td><td>ดูช่อง “ส่งที่ไหน” และลิงก์ในหน้ารายละเอียดงาน</td></tr>
-            <tr><th scope="row">มีงาน<span class="nw">เลยกำหนด</span>ที่ยังไม่ได้ส่ง</th><td>อาจไม่รู้ตัวจนเพื่อนถาม</td><td>งานนั้นขึ้นในกลุ่ม “<span class="nw">เลยกำหนด</span>” บนสุดของรายการ</td></tr>
+            <tr><th scope="row">คืนก่อนนอน อยากรู้ว่าพรุ่งนี้ต้องส่งอะไร</th><td data-label="วิธีเดิม">ไล่เปิดแชตกลุ่ม ระบบเรียนออนไลน์ และรูปในเครื่อง</td><td data-label="เมื่อใช้ทันส่ง">เปิดหน้างานของฉัน แล้วดูกลุ่ม “ส่งพรุ่งนี้”</td></tr>
+            <tr><th scope="row">ได้รับรายงานกลุ่มชิ้นใหญ่</th><td data-label="วิธีเดิม">รู้แค่วันส่ง ไม่รู้ว่าควรเริ่มจากตรงไหน</td><td data-label="เมื่อใช้ทันส่ง">แบ่งเป็นขั้นตอนย่อยตั้งแต่วันที่ได้รับงาน</td></tr>
+            <tr><th scope="row">มีเวลาว่าง 30 นาทีระหว่างคาบ</th><td data-label="วิธีเดิม">ใช้เวลาส่วนหนึ่งไปกับการคิดว่าจะทำอะไร</td><td data-label="เมื่อใช้ทันส่ง">การ์ด <span class="nw">“ทำอันนี้ก่อน”</span> บอก<span class="nw">ขั้นต่อไป</span>ของงานที่ด่วนที่สุด</td></tr>
+            <tr><th scope="row">จำไม่ได้ว่างานนี้ส่ง<span class="nw">ช่องทางไหน</span></th><td data-label="วิธีเดิม">ย้อนหาในแชตหรืออีเมล</td><td data-label="เมื่อใช้ทันส่ง">ดูช่อง “ส่งที่ไหน” และลิงก์ในหน้ารายละเอียดงาน</td></tr>
+            <tr><th scope="row">มีงาน<span class="nw">เลยกำหนด</span>ที่ยังไม่ได้ส่ง</th><td data-label="วิธีเดิม">อาจไม่รู้ตัวจนเพื่อนถาม</td><td data-label="เมื่อใช้ทันส่ง">งานนั้นขึ้นในกลุ่ม “<span class="nw">เลยกำหนด</span>” บนสุดของรายการ</td></tr>
           </tbody>
         </table>
       </div>
@@ -146,6 +148,6 @@
   </div>
 </footer>
 
-<script src="assets/app.js?v=17"></script>
+<script src="assets/app.js?v=19"></script>
 </body>
 </html>

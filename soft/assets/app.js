@@ -484,7 +484,9 @@
     editing = t ? t.id : null;
     afterSave = opts.afterSave || null;
     $('#editor-title').textContent = t ? 'แก้ไขงาน' : 'เพิ่มงาน';
-    var parts = t ? t.due.split('T') : ['', '23:59'];
+    var tmr = new Date(Date.now() + 864e5);
+    var tmrIso = tmr.getFullYear() + '-' + String(tmr.getMonth() + 1).padStart(2, '0') + '-' + String(tmr.getDate()).padStart(2, '0');
+    var parts = t ? t.due.split('T') : [tmrIso, '23:59'];
     $('#f-title').value = t ? t.title : '';
     $('#f-subject').value = t ? t.subject : (opts.subject || '');
     $('#f-type').value = t ? t.type : 'การบ้าน';
@@ -566,6 +568,9 @@
     if (cb) cb(saved, isNew);
     commit();
     toast(isNew ? 'เพิ่ม “' + saved.title + '” แล้ว' : 'บันทึกการแก้ไขแล้ว');
+    // bring the saved card into view so the new task is seen, not just announced
+    var card = $('.task.flash');
+    if (card) card.scrollIntoView({ block: 'center', behavior: calmMotion ? 'auto' : 'smooth' });
     flashId = null;
   }
 
@@ -752,8 +757,7 @@
 
   function typeInto(node, text, at, from, speed) {
     var chars = Array.from(text);
-    node.textContent = '';
-    node.classList.add('typing');
+    at(from - 1, function () { node.textContent = ''; node.classList.add('typing'); });
     chars.forEach(function (c, k) { at(from + k * speed, function () { node.textContent += c; }); });
     at(from + chars.length * speed + 120, function () { node.classList.remove('typing'); });
     return from + chars.length * speed + 220;
@@ -761,9 +765,9 @@
 
   function playForm(el, at) {
     var fields = [].slice.call(el.querySelectorAll('.mock-field div'));
+    // the form stays filled; each field is retyped in turn, so the mock never looks empty
     var texts = fields.map(function (f) { f.style.minHeight = f.offsetHeight + 'px'; return f.textContent; });
-    fields.forEach(function (f) { f.textContent = ''; });
-    var t = 400;
+    var t = 900;
     fields.forEach(function (f, k) { t = typeInto(f, texts[k], at, t, 34); });
   }
 
@@ -775,14 +779,14 @@
     el.style.minHeight = el.offsetHeight + 'px';
     heads.forEach(function (h) { h.style.display = 'none'; });
     [items[1], items[2], items[0]].forEach(function (x) { el.appendChild(x); });
-    at(1000, function () {
+    at(1400, function () {
       var first = items.map(function (x) { return x.getBoundingClientRect().top; });
       sorted.forEach(function (x) { el.appendChild(x); });
       heads.forEach(function (h) { h.style.display = ''; h.classList.add('demo-hide'); });
       items.forEach(function (x, k) { x.style.transform = 'translateY(' + (first[k] - x.getBoundingClientRect().top) + 'px)'; });
       el.offsetHeight;
       items.forEach(function (x) { x.classList.add('demo-move'); x.style.transform = ''; });
-      heads.forEach(function (h) { h.classList.remove('demo-hide'); });
+      heads.forEach(function (h) { h.classList.add('demo-late'); h.classList.remove('demo-hide'); });
     });
   }
 
@@ -816,21 +820,31 @@
 
   function playSearch(el, at) {
     var input = el.querySelector('.search-box .input'), card = el.querySelector('.task');
+    var query = input.textContent;
+    input.textContent = '';
     card.classList.add('demo-hide');
-    var t = typeInto(input, input.textContent, at, 500, 160);
+    var t = typeInto(input, query, at, 500, 160);
     at(t + 200, function () { card.classList.remove('demo-hide'); });
     at(t + 700, function () { var m = card.querySelector('mark'); if (m) m.classList.add('demo-pulse'); });
   }
 
   function playToast(el, at) {
-    var toast = el.querySelector('.mock-toast'), undo = toast.querySelector('b');
+    // the task is deleted, the toast stays up long enough to read, then undo brings the task back
+    var toast = el.querySelector('.mock-toast'), undo = toast.querySelector('b'), msg = toast.firstChild;
+    var task = el.querySelector('.mini-task');
     toast.classList.add('demo-hide');
-    at(500, function () { toast.classList.remove('demo-hide'); });
-    at(1900, function () { undo.classList.add('demo-press'); });
-    at(2150, function () {
+    at(900, function () { task.classList.add('demo-gone'); });
+    at(1300, function () { toast.classList.remove('demo-hide'); });
+    at(4200, function () { undo.classList.add('demo-press'); });
+    at(4500, function () {
       undo.classList.remove('demo-press');
-      undo.style.visibility = 'hidden';
-      toast.firstChild.textContent = 'กู้คืน “ควิซการอ่าน Unit 6” แล้ว';
+      undo.classList.add('demo-gone');
+      msg.classList.add('demo-swap');
+      task.classList.remove('demo-gone');
+    });
+    at(4800, function () {
+      msg.textContent = 'กู้คืน “ควิซการอ่าน Unit 6” แล้ว';
+      msg.classList.remove('demo-swap');
     });
   }
 
@@ -871,7 +885,7 @@
     ];
 
     /* side tiles: small read-only summaries of `tasks` */
-    var BUCKETS = [['overdue', 'เลยกำหนด'], ['soon', 'วันนี้–พรุ่งนี้'], ['week', 'ภายใน 7 วัน'], ['later', 'หลังจากนั้น'], ['submitted', 'ส่งแล้ว']];
+    var BUCKETS = [['overdue', 'เลยกำหนด'], ['soon', 'ส่งวันนี้–พรุ่งนี้'], ['week', 'ภายใน 7 วัน'], ['later', 'หลังจากนั้น'], ['submitted', 'ส่งแล้ว']];
     function summary(now, open) {
       var cnt = { overdue: 0, soon: 0, week: 0, later: 0, submitted: 0 };
       tasks.forEach(function (t) { var u = urgency(t, now); cnt[u === 'today' || u === 'tomorrow' ? 'soon' : u]++; });
@@ -1107,6 +1121,29 @@
         toggle.focus();
       }
     });
+  }
+
+  /* light / dark switch: remembers the visitor's pick, otherwise follows the device */
+  var navBar = $('.nav-bar');
+  if (navBar) {
+    var themeBtn = document.createElement('button');
+    themeBtn.type = 'button';
+    themeBtn.className = 'theme-toggle';
+    themeBtn.innerHTML = '<svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>' +
+      '<svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"/></svg>';
+    var isDark = function () {
+      var t = document.documentElement.getAttribute('data-theme');
+      return t ? t === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    };
+    var label = function () { themeBtn.setAttribute('aria-label', isDark() ? 'เปลี่ยนเป็นโหมดสว่าง' : 'เปลี่ยนเป็นโหมดมืด'); };
+    label();
+    themeBtn.addEventListener('click', function () {
+      var next = isDark() ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+      label();
+    });
+    navBar.appendChild(themeBtn);
   }
 
   /* sliding pill behind the desktop nav links */
