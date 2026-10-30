@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>งานของฉัน — ทันส่ง</title>
+<meta name="description" content="รายการงานทุกวิชา เรียงตามวันและเวลาที่ต้องส่ง เพิ่ม แก้ไข ลบ กรอง และติดตามความคืบหน้าได้">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=Sarabun:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/theme.css">
+</head>
+<body data-page="board">
+
+<header class="site-header">
+  <div class="wrap nav-bar">
+    <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#E5532D"/><path d="M8.5 16.5l5 5L23.5 11" fill="none" stroke="#FFFDF8" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="25.5" cy="6.5" r="3.2" fill="#FFD94D"/></svg>ทันส่ง</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="เปิดเมนู"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
+    <nav class="nav-menu" id="nav-menu" aria-label="เมนูหลัก">
+      <ul class="nav-links">
+        <li><a href="index.html">หน้าแรก</a></li>
+        <li><a href="features.html">ฟีเจอร์</a></li>
+        <li><a href="students.html">เหมาะกับใคร</a></li>
+        <li><a href="how-to.html">วิธีใช้</a></li>
+        <li><a href="search.html">ค้นหางาน</a></li>
+        <li><a href="business.html">แผนธุรกิจ</a></li>
+      </ul>
+      <div class="nav-cta"><a class="btn btn-ink btn-sm" href="board.html" aria-current="page">งานของฉัน</a></div>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap board">
+  <div class="board-head">
+    <div>
+      <h1>งานของฉัน</h1>
+      <p>เรียงจากงานที่ต้องส่งก่อน กดชื่องานเพื่อดูรายละเอียด</p>
+    </div>
+    <button type="button" class="btn btn-accent" data-act="add"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>เพิ่มงาน</button>
+  </div>
+
+  <div class="bento">
+    <section class="tile tile-overview" aria-labelledby="ov-title">
+      <div class="tile-head"><h2 id="ov-title">ภาพรวมงาน</h2></div>
+      <div class="stats" id="stats"></div>
+    </section>
+    <section class="tile tile-progress" aria-labelledby="pg-title">
+      <div class="tile-head"><h2 id="pg-title">ความคืบหน้า</h2></div>
+      <div id="progress-summary"></div>
+    </section>
+    <section class="tile tile-due" aria-labelledby="due-title">
+      <div class="tile-head"><h2 id="due-title">กำหนดส่ง 14 วัน</h2></div>
+      <div id="due-chart"></div>
+    </section>
+    <section class="tile tile-week" aria-labelledby="wk-title">
+      <div class="tile-head"><h2 id="wk-title">ต้องส่งใน 7 วัน</h2></div>
+      <div id="week-summary"></div>
+    </section>
+    <section class="tile tile-subjects" aria-labelledby="sj-title">
+      <div class="tile-head"><h2 id="sj-title">ขั้นตอนที่เหลือ</h2></div>
+      <div id="subject-summary"></div>
+    </section>
+    <div class="tile-insight" id="focus-slot"></div>
+  </div>
+
+  <section class="tile board-main" aria-labelledby="list-title">
+    <div class="tile-head"><h2 id="list-title">รายการงาน</h2></div>
+    <div class="toolbar">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+        <label class="sr-only" for="board-q">กรองรายการ</label>
+        <input class="input" type="search" id="board-q" placeholder="กรองตามชื่องาน วิชา หรือโน้ต" autocomplete="off">
+      </div>
+      <div class="seg" id="board-seg" role="group" aria-label="สถานะ">
+        <button type="button" data-status="open" aria-pressed="true">ยังไม่ส่ง<span class="n"></span></button>
+        <button type="button" data-status="submitted" aria-pressed="false">ส่งแล้ว<span class="n"></span></button>
+        <button type="button" data-status="all" aria-pressed="false">ทั้งหมด<span class="n"></span></button>
+      </div>
+      <div>
+        <label class="sr-only" for="board-sort">เรียงลำดับ</label>
+        <select class="input" id="board-sort">
+          <option value="due">ใกล้กำหนดก่อน</option>
+          <option value="due-desc">ไกลกำหนดก่อน</option>
+          <option value="progress">คืบหน้าน้อยก่อน</option>
+          <option value="recent">เพิ่มล่าสุดก่อน</option>
+        </select>
+      </div>
+    </div>
+    <div class="subject-chips" id="board-subjects" role="group" aria-label="กรองตามวิชา"></div>
+
+    <div id="board-list">
+      <noscript><p class="empty">ส่วนทดลองต้องเปิด JavaScript ในเบราว์เซอร์</p></noscript>
+    </div>
+
+    <div class="data-tools">
+      <span>รายการนี้บันทึกในเบราว์เซอร์นี้</span>
+      <button type="button" class="btn-link" data-act="reset-sample">โหลดข้อมูลตัวอย่างใหม่</button>
+      <button type="button" class="btn-link" data-act="clear-all">ลบงานทั้งหมด</button>
+      <a class="btn-link" href="search.html">ค้นหาแบบละเอียด</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#E5532D"/><path d="M8.5 16.5l5 5L23.5 11" fill="none" stroke="#FFFDF8" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="25.5" cy="6.5" r="3.2" fill="#FFD94D"/></svg>ทันส่ง</a>
+        <p>รวมงานทุกวิชาไว้ที่เดียว เรียงตามเวลาส่ง และบอกว่าควรเริ่มงานไหนก่อน</p>
+      </div>
+      <ul class="foot-links">
+        <li><a href="index.html">หน้าแรก</a></li>
+        <li><a href="features.html">ฟีเจอร์</a></li>
+        <li><a href="students.html">เหมาะกับใคร</a></li>
+        <li><a href="how-to.html">วิธีใช้</a></li>
+        <li><a href="board.html">งานของฉัน</a></li>
+        <li><a href="search.html">ค้นหางาน</a></li>
+        <li><a href="task.html?id=demo-stat-report">ตัวอย่างรายละเอียดงาน</a></li>
+        <li><a href="business.html">แผนธุรกิจ</a></li>
+      </ul>
+    </div>
+    <p class="foot-note">ทันส่งเป็นแนวคิดธุรกิจในโครงงานรายวิชา TU107 ยังไม่ใช่บริการที่เปิดให้ใช้จริง ส่วนทดลองเก็บรายการงานไว้ในเบราว์เซอร์ของคุณเท่านั้น</p>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ทันส่ง — รวมงานทุกวิชา แล้วรู้ว่าต้องเริ่มอันไหนก่อน</title>
+<meta name="description" content="ทันส่ง ตัวช่วยจัดลำดับงานสำหรับนักศึกษา รวมงานทุกวิชาไว้ในรายการเดียว เรียงตามวันและเวลาที่ต้องส่ง และแบ่งงานเป็นขั้นตอนย่อย">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=Sarabun:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/theme.css">
+</head>
+<body data-page="home">
+
+<header class="site-header">
+  <div class="wrap nav-bar">
+    <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#E5532D"/><path d="M8.5 16.5l5 5L23.5 11" fill="none" stroke="#FFFDF8" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="25.5" cy="6.5" r="3.2" fill="#FFD94D"/></svg>ทันส่ง</a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="เปิดเมนู"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
+    <nav class="nav-menu" id="nav-menu" aria-label="เมนูหลัก">
+      <ul class="nav-links">
+        <li><a href="index.html" aria-current="page">หน้าแรก</a></li>
+        <li><a href="features.html">ฟีเจอร์</a></li>
+        <li><a href="students.html">เหมาะกับใคร</a></li>
+        <li><a href="how-to.html">วิธีใช้</a></li>
+        <li><a href="search.html">ค้นหางาน</a></li>
+        <li><a href="business.html">แผนธุรกิจ</a></li>
+      </ul>
+      <div class="nav-cta"><a class="btn btn-accent btn-sm" href="board.html">ลองใช้ทันส่ง</a></div>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">ตัวช่วยจัดลำดับงานสำหรับนักศึกษา</p>
+        <h1>งานเยอะยังพอไหว<br>ที่หนักคือ<mark>ไม่รู้จะเริ่มอันไหน</mark></h1>
+        <p class="lead">ทันส่งรวมงานทุกวิชาไว้ในรายการเดียว เรียงตามวันและเวลาที่ต้องส่ง แล้วชี้ให้เห็นขั้นต่อไปของงานที่ควรทำก่อน</p>
+        <div class="btn-row">
+          <a class="btn btn-accent" href="board.html">ลองใช้ทันส่ง</a>
+          <a class="btn btn-ghost" href="how-to.html">ดูวิธีใช้</a>
+        </div>
+        <p class="hero-note">ไม่ต้องสมัคร มีงานตัวอย่างให้ลองกดตั้งแต่เปิด และแก้หรือลบได้ทั้งหมด</p>
+      </div>
+      <div class="hero-demo" id="hero-demo" aria-live="polite">
+        <noscript><p class="card">ส่วนทดลองต้องเปิด JavaScript ในเบราว์เซอร์</p></noscript>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:20px">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">ปัญหาที่เราเลือก</p>
+        <h2>รายละเอียดงานอยู่คนละที่ วันส่งก็อยู่คนละที่</h2>
+        <p class="lead">นักศึกษาหนึ่งคนลงหลายวิชาในเทอมเดียว แต่ละวิชาแจ้งงานผ่านช่องทางต่างกัน เมื่อทุกอย่างไม่ได้อยู่ในที่เดียว ก็ยากจะเห็นว่างานไหนใกล้ถึงกำหนดที่สุด</p>
+      </div>
+
+      <div class="scatter" aria-label="ภาพเปรียบเทียบ: งานจากหลายช่องทางถูกรวมเป็นรายการเดียว">
+        <div class="scatter-sources">
+          <span class="src">แชตกลุ่มของชั้นปี</span>
+          <span class="src">ประกาศในระบบเรียนออนไลน์</span>
+          <span class="src">อาจารย์บอกท้ายคาบ</span>
+          <span class="src">ภาพถ่ายสไลด์ในมือถือ</span>
+          <span class="src">อีเมลจากอาจารย์</span>
+          <span class="src">เพื่อนในกลุ่มรายงานแจ้ง</span>
+          <span class="src">โน้ตที่จดไว้เอง</span>
+        </div>
+        <div class="scatter-arrow" aria-hidden="true">
+          <svg viewBox="0 0 96 40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20c20-14 44-14 84 0"/><path d="M76 10l12 10-14 6"/></svg>
+        </div>
+        <div class="scatter-result">
+          <div class="row" style="--c:#9B4DCA"><i></i>สรุปข่าวเศรษฐกิจ<span class="chip chip-overdue">เลยกำหนด</span></div>
+          <div class="row" style="--c:#D9467A"><i></i>แบบฝึกหัดบทที่ 4<span class="chip chip-today">วันนี้</span></div>
+          <div class="row" style="--c:#3C8A3E"><i></i>ควิซการอ่าน Unit 6<span class="chip chip-tomorrow">พรุ่งนี้</span></div>
+          <div class="row" style="--c:#1E9E8F"><i></i>รายงานกลุ่มสถิติ<span class="chip chip-week">อีก 5 วัน</span></div>
+        </div>
+      </div>
+
+      <ul class="pain-list">
+        <li><strong>ต้องไล่เปิดหลายที่</strong>กว่าจะรู้ว่าสัปดาห์นี้มีอะไรต้องส่ง และส่งช่องทางไหน</li>
+        <li><strong>งานใหญ่ดูไม่ออกว่าเริ่มตรงไหน</strong>เลยเลื่อนออกไปเรื่อยๆ จนเหลือเวลาน้อย</li>
+        <li><strong>งานเล็กที่ส่งเร็วถูกลืม</strong>เพราะไม่ได้อยู่ในที่ที่เปิดดูบ่อย</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--card);border-block:1px solid var(--line)">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">สิ่งที่ทันส่งทำ</p>
+        <h2>รวม เรียง แล้วแตกงานให้เล็กพอจะเริ่มได้</h2>
+      </div>
+      <div class="grid-3">
+        <article class="card pillar">
+          <span class="num-badge">1</span>
+          <span class="kicker">รวม</span>
+          <h3>งานทุกวิชาอยู่ในรายการเดียว</h3>
+          <p>จดชื่องาน วิชา วันและเวลาส่ง ช่องทางส่ง ลิงก์ และโน้ตไว้ด้วยกัน ไม่ต้องกลับไปหาในแชต</p>
+          <a href="board.html#add">เพิ่มงานลองดู →</a>
+        </article>
+        <article class="card pillar">
+          <span class="num-badge">2</span>
+          <span class="kicker">เรียง</span>
+          <h3>เห็นทันทีว่าอะไรใกล้ถึงกำหนด</h3>
+          <p>งานถูกจัดเป็นกลุ่ม เลยกำหนด วันนี้ พรุ่งนี้ ภายใน 7 วัน พร้อมเวลาที่เหลือ และการ์ด “ทำอันนี้ก่อน”</p>
+          <a href="board.html">ดูรายการงาน →</a>
+        </article>
+        <article class="card pillar">
+          <span class="num-badge">3</span>
+          <span class="kicker">แตก</span>
+          <h3>แบ่งงานใหญ่เป็นขั้นตอนย่อย</h3>
+          <p>ติ๊กทีละขั้นแล้วแถบความคืบหน้าขยับตาม รู้ว่าเหลืออีกกี่ขั้นและขั้นต่อไปคืออะไร</p>
+          <a href="task.html?id=demo-stat-report">เปิดงานตัวอย่าง →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">เส้นทางในเว็บไซต์นี้</p>
+        <h2>อ่านแนวคิด แล้วลองใช้จริงได้ในหน้าเดียวกัน</h2>
+      </div>
+      <ol class="route">
+        <li><a href="features.html"><strong>ฟีเจอร์</strong><span>สิ่งที่ทำได้ตอนนี้ และสิ่งที่ยังไม่มี</span></a></li>
+        <li><a href="students.html"><strong>เหมาะกับใคร</strong><span>กลุ่มเป้าหมายและประโยชน์ที่ได้</span></a></li>
+        <li><a href="how-to.html"><strong>วิธีใช้</strong><span>5 ขั้นจากเพิ่มงานจนส่งเสร็จ</span></a></li>
+        <li><a href="board.html"><strong>ลองใช้: งานของฉัน</strong><span>เพิ่ม แก้ไข ลบ กรอง และเรียงงาน</span></a></li>
+        <li><a href="task.html?id=demo-stat-report"><strong>รายละเอียดงาน</strong><span>ติ๊กขั้นตอนและดูความคืบหน้า</span></a></li>
+        <li><a href="search.html"><strong>ค้นหางาน</strong><span>ค้นจากชื่อ วิชา โน้ต และขั้นตอนย่อย</span></a></li>
+        <li><a href="business.html"><strong>แผนธุรกิจ</strong><span>รายได้ ช่องทาง และแผนพัฒนาต่อ</span></a></li>
+        <li><a href="board.html#add"><strong>เริ่มใส่งานของตัวเอง</strong><span>เปิดฟอร์มเพิ่มงานทันที</span></a></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="wrap">
+      <div class="band">
+        <div>
+          <h2>ลองจัดงานของเทอมนี้ดู</h2>
+          <p>เริ่มจากงานตัวอย่าง ลบทิ้งแล้วใส่งานของตัวเองได้ทันที ข้อมูลอยู่ในเบราว์เซอร์นี้เท่านั้น</p>
+        </div>
+        <a class="btn btn-accent" href="board.html">ไปที่งานของฉัน</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#E5532D"/><path d="M8.5 16.5l5 5L23.5 11" fill="none" stroke="#FFFDF8" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="25.5" cy="6.5" r="3.2" fill="#FFD94D"/></svg>ทันส่ง</a>
+        <p>รวมงานทุกวิชาไว้ที่เดียว เรียงตามเวลาส่ง และบอกว่าควรเริ่มงานไหนก่อน</p>
+      </div>
+      <ul class="foot-links">
+        <li><a href="index.html">หน้าแรก</a></li>
+        <li><a href="features.html">ฟีเจอร์</a></li>
+        <li><a href="students.html">เหมาะกับใคร</a></li>
+        <li><a href="how-to.html">วิธีใช้</a></li>
+        <li><a href="board.html">งานของฉัน</a></li>
+        <li><a href="search.html">ค้นหางาน</a></li>
+        <li><a href="task.html?id=demo-stat-report">ตัวอย่างรายละเอียดงาน</a></li>
+        <li><a href="business.html">แผนธุรกิจ</a></li>
+      </ul>
+    </div>
+    <p class="foot-note">ทันส่งเป็นแนวคิดธุรกิจในโครงงานรายวิชา TU107 ยังไม่ใช่บริการที่เปิดให้ใช้จริง ส่วนทดลองเก็บรายการงานไว้ในเบราว์เซอร์ของคุณเท่านั้น</p>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
