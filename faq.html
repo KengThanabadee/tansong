@@ -31,7 +31,7 @@
     .hero-pattern{background-image:radial-gradient(#f6e5c9 1px,transparent 1px);background-size:22px 22px}
     @media(max-width:640px){.nav-scroll{overflow-x:auto;scrollbar-width:none}.nav-scroll::-webkit-scrollbar{display:none}}
   
-a.primary,a.secondary,a.nav-button{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}a:focus-visible,button:focus-visible{outline:3px solid #b75d27;outline-offset:3px}
+a.primary,a.secondary,a.nav-button{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}a:focus-visible,button:focus-visible{outline:3px solid #b75d27;outline-offset:3px}@media(min-width:1024px){a.mobile-demo-link{display:none}}
 </style>
   <script src="https://cdn.jsdelivr.net/npm/lucide@0.577.0/dist/umd/lucide.min.js" type="text/javascript"></script>
   <script src="https://cdn.tailwindcss.com/3.4.17" type="text/javascript"></script>
@@ -40,7 +40,7 @@ a.primary,a.secondary,a.nav-button{display:inline-flex;align-items:center;justif
   <header class="canva-header w-full border-b border-[#e1e6d9] bg-[#faf7ef] sticky top-0 z-30" style="background: rgb(250, 247, 239);">
    <div class="max-w-7xl mx-auto px-4 md:px-8 py-3 flex flex-col lg:flex-row lg:items-center gap-3">
     <div class="flex items-center justify-between">
-     <a class="font-extrabold text-2xl tracking-tight text-[#173f34] flex items-center gap-2" aria-label="ไปหน้าแรก" href="index.html"><span class="w-9 h-9 rounded-xl bg-[#173f34] text-[#faf7ef] grid place-items-center text-lg">S</span>StudyFlow</a> <span class="canva-tag bg-[#f5c99c] text-[#593819] rounded-full px-3 py-1 text-xs font-bold lg:hidden" style="background: rgb(245, 201, 156); color: rgb(89, 56, 25); font-weight: 400; font-style: normal; font-size: 16px;">โครงงาน TU107</span>
+     <a class="font-extrabold text-2xl tracking-tight text-[#173f34] flex items-center gap-2" aria-label="ไปหน้าแรก" href="index.html"><span class="w-9 h-9 rounded-xl bg-[#173f34] text-[#faf7ef] grid place-items-center text-lg">S</span>StudyFlow</a> <a href="demo.html" class="primary mobile-demo-link">ลองจัดงาน</a>
     </div>
     <nav class="nav-scroll flex gap-1 lg:ml-auto pb-1 lg:pb-0" aria-label="เมนูหลัก">
      <a class="nav-button" style="font-weight: 400; font-style: normal; font-size: 16px;" href="index.html">หน้าแรก</a> <a class="nav-button" style="font-weight: 400; font-style: normal; font-size: 16px;" href="problem.html">ปัญหา</a> <a class="nav-button" style="font-weight: 400; font-style: normal; font-size: 16px;" href="solution.html">บริการ</a> <a class="nav-button" style="font-weight: 400; font-style: normal; font-size: 16px;" href="features.html">ฟีเจอร์</a> <a class="nav-button" style="font-weight: 400; font-style: normal; font-size: 16px;" href="usage.html">วิธีใช้</a> <a class="nav-button" style="font-weight: 400; font-style: normal; font-size: 16px;" href="demo.html">ลองจัดงาน</a> <a class="nav-button" style="font-weight: 400; font-style: normal; font-size: 16px;" href="plans.html">แพ็กเกจ</a> <a class="nav-button active" style="font-weight: 400; font-style: normal; font-size: 16px;" href="faq.html" aria-current="page">คำถาม</a>
