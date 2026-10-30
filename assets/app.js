@@ -927,6 +927,34 @@
     });
   }
 
+  /* sliding pill behind the desktop nav links */
+  var navList = $('.nav-links');
+  if (navList) {
+    var pill = document.createElement('span');
+    pill.className = 'nav-pill';
+    pill.setAttribute('aria-hidden', 'true');
+    navList.insertBefore(pill, navList.firstChild);
+    var links = [].slice.call(navList.querySelectorAll('a'));
+    var current = navList.querySelector('a[aria-current="page"]');
+    var moveTo = function (a) {
+      links.forEach(function (x) { x.classList.toggle('is-lit', x === a); });
+      if (!a) { pill.style.opacity = '0'; return; }
+      pill.style.opacity = '1';
+      pill.style.width = a.offsetWidth + 'px';
+      pill.style.transform = 'translateX(' + a.offsetLeft + 'px)';
+    };
+    moveTo(current);
+    links.forEach(function (a) {
+      a.addEventListener('mouseenter', function () { moveTo(a); });
+      a.addEventListener('focus', function () { moveTo(a); });
+    });
+    navList.addEventListener('mouseleave', function () { moveTo(current); });
+    navList.addEventListener('focusout', function (e) { if (!navList.contains(e.relatedTarget)) moveTo(current); });
+    window.addEventListener('resize', function () { moveTo(current); });
+    if (document.fonts) document.fonts.ready.then(function () { moveTo(current); });
+    requestAnimationFrame(function () { navList.classList.add('pill-ready'); });
+  }
+
   var init = { home: initHome, board: initBoard, search: initSearch, task: initTask }[page];
   if (init) {
     toastRegion();
