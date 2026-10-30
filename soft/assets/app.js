@@ -408,7 +408,6 @@
         '<button type="button" class="btn btn-sm btn-ghost" data-act="split" data-id="' + id + '" data-fk="focus:' + id + ':split">' + I.plus + 'แบ่งเป็นขั้นตอนย่อย</button></div>';
     }
     return '<section class="focus" style="--c:' + colorFor(t.subject) + '" aria-labelledby="focus-title">' + label +
-      (p.total ? '<p class="focus-big">' + p.pct + '<small>%</small></p>' : '') +
       '<h2 id="focus-title"><a href="' + taskUrl(t) + '">' + esc(t.title) + '</a></h2>' +
       '<div class="focus-meta">' + subjTag(t) + '<span>' + esc(dueShort(t, now)) + '</span><span class="chip chip-' + urgency(t, now) + '">' + esc(countdown(t, now)) + '</span></div>' +
       body +
@@ -619,7 +618,7 @@
     s.done = c.checked;
     commit();
     if (s.done && !t.submitted && t.subtasks.every(function (x) { return x.done; })) {
-      toast('ทำครบทุกขั้นของ “' + t.title + '” แล้ว ส่งงานเสร็จแล้วกด “ส่งแล้ว” ได้เลย');
+      toast('ทำครบทุกขั้นของ “' + t.title + '” แล้ว ส่งงานเสร็จอย่าลืมกด “ส่งแล้ว”');
     }
   });
 
@@ -645,7 +644,7 @@
       var now = new Date();
       var open = tasks.filter(function (t) { return !t.submitted; }).sort(byDue);
       var rest = open.slice(1, 4);
-      slot.innerHTML = '<p class="hero-demo-label">ตัวอย่างจากรายการงานในเบราว์เซอร์นี้ กดลองได้เลย</p>' +
+      slot.innerHTML = '<p class="hero-demo-label">งานของคุณตอนนี้ · ติ๊กขั้นตอนได้เลย</p>' +
         focusCard(now, false) +
         (rest.length ? '<ul class="upcoming" aria-label="งานถัดไป">' + rest.map(function (t) { return '<li>' + miniTask(t, now) + '</li>'; }).join('') + '</ul>' : '') +
         (open.length ? '<p class="hero-demo-foot"><a href="board.html">ดูงานทั้งหมด ' + open.length + ' งาน →</a></p>' : '');
@@ -689,32 +688,14 @@
       ['week', 'ภายใน 7 วัน'], ['later', 'หลังจากนั้น'], ['submitted', 'ส่งแล้ว']
     ];
 
-    /* dashboard tiles: small read-only summaries of `tasks` */
-    var fmtDay = new Intl.DateTimeFormat('th-TH', { day: 'numeric', month: 'short' });
-    var fmtWd = new Intl.DateTimeFormat('th-TH', { weekday: 'short' });
+    /* side tiles: small read-only summaries of `tasks` */
     var BUCKETS = [['overdue', 'เลยกำหนด'], ['soon', 'วันนี้–พรุ่งนี้'], ['week', 'ภายใน 7 วัน'], ['later', 'หลังจากนั้น'], ['submitted', 'ส่งแล้ว']];
-    function maxOf(a) { return Math.max.apply(null, a.concat(0)); }
-    function dotCol(c, max) {
-      var s = '';
-      for (var i = 0; i < Math.max(1, Math.min(c.n, 5)); i++) s += '<i></i>';
-      return '<span class="' + (max && c.n === max ? 'is-peak' : c.n ? '' : 'is-zero') + '" title="' + esc(c.t) + ': ' + c.n + '">' + s + '</span>';
-    }
-    function mini(num, cols, peak, sideLabel, sideNum) {
-      var max = maxOf(cols.map(function (c) { return c.n; }));
-      return '<div class="mini"><b class="mini-num">' + num + '</b>' +
-        '<div class="mini-chart">' + (peak ? '<span class="peak">' + peak + '</span>' : '') +
-          '<div class="dots" aria-hidden="true">' + cols.map(function (c) { return dotCol(c, max); }).join('') + '</div></div>' +
-        '<p class="mini-side"><span>' + sideLabel + '</span><b>' + sideNum + '</b></p></div>';
-    }
     function summary(now, open) {
       var cnt = { overdue: 0, soon: 0, week: 0, later: 0, submitted: 0 };
       tasks.forEach(function (t) { var u = urgency(t, now); cnt[u === 'today' || u === 'tomorrow' ? 'soon' : u]++; });
-      var top = maxOf(BUCKETS.map(function (b) { return cnt[b[0]]; })) || 1;
-      var lead = ['overdue', 'soon', 'week', 'later'].filter(function (k) { return cnt[k]; })[0];
       $('#stats').innerHTML = BUCKETS.map(function (b) {
         var n = cnt[b[0]];
-        return '<div class="stat' + (b[0] === lead ? ' is-lead' : '') + (b[0] === 'overdue' && n ? ' is-alert' : '') + '"><span>' + b[1] + '</span><b>' + n + '</b>' +
-          '<div class="stat-col">' + (n ? '<i style="height:' + Math.max(8, Math.round(n / top * 100)) + '%"></i>' : '') + '</div></div>';
+        return '<div class="stat stat-' + b[0] + (n ? '' : ' is-zero') + (b[0] === 'overdue' && n ? ' is-alert' : '') + '"><span>' + b[1] + '</span><b>' + n + '</b></div>';
       }).join('');
 
       var bySub = {}, done = 0, total = 0;
@@ -722,38 +703,15 @@
         var p = prog(t), s = bySub[t.subject] = bySub[t.subject] || { name: t.subject, done: 0, total: 0 };
         s.done += p.done; s.total += p.total; done += p.done; total += p.total;
       });
-      var subs = Object.keys(bySub).map(function (k) { return bySub[k]; });
-      $('#progress-summary').innerHTML = open.length
-        ? '<div class="big-figure"><b>' + (total ? Math.round(done / total * 100) : 0) + '<small>%</small></b><span class="pill">' + done + '/' + total + ' ขั้น</span></div>' +
-          '<ul class="subj-bars">' + subs.slice().sort(function (a, b) { return (b.total - b.done) - (a.total - a.done); }).slice(0, 4).map(function (s) {
-            var pct = s.total ? Math.round(s.done / s.total * 100) : 0;
+      var subs = Object.keys(bySub).map(function (k) { return bySub[k]; }).filter(function (s) { return s.total; });
+      $('#progress-summary').innerHTML = subs.length
+        ? '<div class="big-figure"><b>' + Math.round(done / total * 100) + '<small>%</small></b><span>ทำไปแล้ว ' + done + ' จาก ' + total + ' ขั้น ในงานที่ยังไม่ส่ง</span></div>' +
+          '<ul class="subj-bars">' + subs.sort(function (a, b) { return (b.total - b.done) - (a.total - a.done); }).map(function (s) {
+            var pct = Math.round(s.done / s.total * 100);
             return '<li style="--c:' + colorFor(s.name) + '"><div class="sb-top"><span>' + esc(s.name) + '</span><b>' + s.done + '/' + s.total + '</b></div>' +
               '<div class="bar" role="progressbar" aria-label="ความคืบหน้า ' + esc(s.name) + '" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + pct + '"><span style="width:' + pct + '%"></span></div></li>';
           }).join('') + '</ul>'
-        : '<p class="tile-empty">ไม่มีงานค้าง</p>';
-
-      var days = [], i;
-      for (i = 0; i < 14; i++) days.push(0);
-      open.forEach(function (t) { var d = parseDue(t.due), dd = dayDiff(d, now); if (d >= now && dd < 14) days[dd]++; });
-      function dayAt(n) { var x = new Date(now); x.setDate(x.getDate() + n); return x; }
-      var dmax = maxOf(days), peak = dmax ? days.indexOf(dmax) : -1;
-      $('#due-chart').innerHTML =
-        '<div class="due-bars" role="img" aria-label="' + (dmax ? 'วันที่มีงานต้องส่งมากที่สุด ' + fmtDay.format(dayAt(peak)) + ' ' + dmax + ' งาน' : 'ไม่มีงานต้องส่งใน 14 วัน') + '">' +
-          days.map(function (n, k) {
-            return '<span style="--h:' + (dmax ? Math.max(4, Math.round(n / dmax * 76)) : 4) + '%"' + (k === peak ? ' class="is-peak"' : '') + ' title="' + fmtDay.format(dayAt(k)) + ': ' + n + ' งาน">' +
-              (k === peak ? '<em>' + n + ' งาน</em>' : '') + '</span>';
-          }).join('') + '</div>' +
-        '<div class="due-axis"><span>วันนี้</span><span>' + fmtDay.format(dayAt(7)) + '</span><span>' + fmtDay.format(dayAt(13)) + '</span></div>';
-
-      var wk = days.slice(0, 8), wmax = maxOf(wk);
-      $('#week-summary').innerHTML = mini(wk.reduce(function (a, b) { return a + b; }, 0),
-        wk.map(function (n, k) { return { n: n, t: fmtWd.format(dayAt(k)) }; }),
-        wmax ? 'หนักสุด: <b>' + fmtWd.format(dayAt(wk.indexOf(wmax))) + '</b>' : '', 'เลยกำหนด', cnt.overdue);
-
-      var cols = subs.slice(0, 8).map(function (s) { return { n: s.total - s.done, t: s.name }; });
-      var smax = maxOf(cols.map(function (c) { return c.n; }));
-      var most = cols.filter(function (c) { return c.n === smax; })[0];
-      $('#subject-summary').innerHTML = mini(total - done, cols, smax ? 'มากสุด: <b>' + esc(most.t) + '</b>' : '', 'ทำแล้ว', done);
+        : '<p class="tile-empty">' + (open.length ? 'งานที่ค้างยังไม่มีขั้นตอนย่อย' : 'ไม่มีงานค้าง') + '</p>';
     }
 
     render = function () {
@@ -790,7 +748,7 @@
       if (!tasks.length) {
         el.innerHTML = '<div class="empty"><h2>ยังไม่มีงานในรายการ</h2><p>เพิ่มงานแรกจากสิ่งที่ต้องส่งเร็วที่สุดก่อน</p>' +
           '<div class="btn-row" style="justify-content:center"><button type="button" class="btn btn-accent" data-act="add">' + I.plus + 'เพิ่มงาน</button>' +
-          '<button type="button" class="btn btn-ghost" data-act="reset-sample">ใช้ข้อมูลตัวอย่าง</button></div></div>';
+          '<button type="button" class="btn btn-ghost" data-act="reset-sample">โหลดงานตัวอย่าง</button></div></div>';
         return;
       }
       if (!list.length) {
@@ -900,7 +858,7 @@
     var slot = $('#detail');
     var id = new URLSearchParams(location.search).get('id');
     render = function () {
-      var t = getTask(id), now = new Date();
+      var t = getTask(id) || (id === 'demo-stat-report' || !id ? tasks.filter(function (x) { return !x.submitted; }).sort(byDue)[0] || tasks[0] : null), now = new Date();
       if (!t) {
         document.title = 'ไม่พบงาน — ทันส่ง';
         slot.innerHTML = '<div class="empty" style="margin-top:20px"><h1 style="font-size:28px">ไม่พบงานนี้</h1><p>งานอาจถูกลบไปแล้ว หรือเปิดจากเบราว์เซอร์อื่นที่ไม่มีรายการนี้</p>' +

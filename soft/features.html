@@ -9,14 +9,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anuphan:wght@400;500;600;700&family=Sarabun:wght@400;500;600;700&display=swap">
-<link rel="stylesheet" href="assets/style.css">
-<link rel="stylesheet" href="assets/theme.css">
+<link rel="stylesheet" href="assets/style.css?v=6">
+<link rel="stylesheet" href="assets/theme.css?v=6">
 </head>
 <body data-page="features">
 
 <header class="site-header">
   <div class="wrap nav-bar">
-    <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#E5532D"/><path d="M8.5 16.5l5 5L23.5 11" fill="none" stroke="#FFFDF8" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="25.5" cy="6.5" r="3.2" fill="#FFD94D"/></svg>ทันส่ง</a>
+    <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="lg0" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4A6DFF"/><stop offset="1" stop-color="#1E3CD8"/></linearGradient></defs><rect width="32" height="32" rx="9" fill="url(#lg0)"/><path d="M13.4 5h5.2M16 5v3.4" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M16 8.4A7.9 7.9 0 1 0 23.9 16.3" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/><path d="M12.2 16.2l3.2 3.2 9-9.2" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>ทันส่ง</a>
     <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="เปิดเมนู"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg></button>
     <nav class="nav-menu" id="nav-menu" aria-label="เมนูหลัก">
       <ul class="nav-links">
@@ -25,7 +25,7 @@
         <li><a href="students.html">เหมาะกับใคร</a></li>
         <li><a href="how-to.html">วิธีใช้</a></li>
         <li><a href="search.html">ค้นหางาน</a></li>
-        <li><a href="business.html">แผนธุรกิจ</a></li>
+        <li><a href="pricing.html">ราคา</a></li>
       </ul>
       <div class="nav-cta"><a class="btn btn-accent btn-sm" href="board.html">ลองใช้ทันส่ง</a></div>
     </nav>
@@ -36,8 +36,8 @@
   <section class="page-hero">
     <div class="wrap">
       <p class="eyebrow">ฟีเจอร์</p>
-      <h1>ทุกอย่างที่ทันส่งทำได้ในตอนนี้</h1>
-      <p class="lead">ทุกข้อในหน้านี้กดลองได้จริงในส่วนทดลอง ส่วนความสามารถที่ยังไม่ได้สร้างแยกไว้ท้ายหน้า</p>
+      <h1>ทุกอย่างที่<span class="bn">ทันส่ง</span>ทำได้</h1>
+      <p class="lead">จดงานครั้งเดียว ที่เหลือ<span class="bn">ทันส่ง</span>เรียงให้ บอกงานที่ควรเริ่มก่อน และนับเวลาถอยหลังจนถึงวันส่ง</p>
     </div>
   </section>
 
@@ -47,7 +47,7 @@
         <p class="eyebrow">รวม</p>
         <h2>รายการเดียวสำหรับงานทุกวิชา</h2>
         <p>หนึ่งงานเก็บชื่องาน วิชา ประเภท วันและเวลาส่ง ช่องทางส่ง ลิงก์ และโน้ตไว้ด้วยกัน เวลาเห็นประกาศในแชตหรือได้ยินอาจารย์บอกท้ายคาบ ก็จดลงที่เดียวได้เลย</p>
-        <p>แต่ละวิชาได้สีประจำโดยอัตโนมัติ ช่องวิชาจะแนะนำชื่อวิชาที่เคยพิมพ์ไว้ ชื่อเดียวกันจึงไม่กลายเป็นหลายวิชา</p>
+        <p>แต่ละวิชาได้สีประจำโดยอัตโนมัติ ช่องวิชาแนะนำชื่อที่เคยพิมพ์ไว้ ไม่ต้องพิมพ์ซ้ำทุกครั้ง</p>
         <a class="btn btn-ink" href="board.html#add">ลองเพิ่มงาน</a>
       </div>
       <div class="feature-demo" aria-hidden="true">
@@ -86,14 +86,14 @@
       <div>
         <p class="eyebrow">เริ่ม</p>
         <h2>การ์ด “ทำอันนี้ก่อน”</h2>
-        <p>ทันส่งหยิบงานที่ยังไม่ส่งและถึงกำหนดเร็วที่สุดขึ้นมาไว้บนสุด พร้อมขั้นตอนถัดไปที่ยังไม่ได้ทำ ติ๊กจากการ์ดได้ทันที แล้วการ์ดจะเลื่อนไปขั้นต่อไปเอง</p>
-        <p>กฎการเลือกเรียบง่ายและเดาได้ ไม่มีคะแนนลับที่ต้องเชื่อ ถ้างานยังไม่ได้แบ่งขั้นตอน การ์ดจะมีปุ่มให้แบ่งก่อน</p>
+        <p><span class="bn">ทันส่ง</span>หยิบงานที่ยังไม่ส่งและถึงกำหนดเร็วที่สุดขึ้นมาไว้บนสุด พร้อมขั้นตอนถัดไปที่ยังไม่ได้ทำ ติ๊กจากการ์ดได้ทันที แล้วการ์ดจะเลื่อนไปขั้นต่อไปเอง</p>
+        <p>ถ้างานยังไม่ได้แบ่งขั้นตอน การ์ดจะมีปุ่มให้แบ่งก่อน</p>
         <a class="btn btn-ink" href="board.html">ลองติ๊กขั้นตอน</a>
       </div>
       <div class="feature-demo" aria-hidden="true">
         <div class="focus" style="--c:#D9467A">
           <p class="focus-label"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg>ทำอันนี้ก่อน</p>
-          <p class="task-title" style="color:#fff;font-size:22px">แบบฝึกหัดบทที่ 4 อนุพันธ์</p>
+          <p class="task-title" style="font-size:22px">แบบฝึกหัดบทที่ 4 อนุพันธ์</p>
           <div class="focus-meta"><span class="subj" style="--c:#D9467A"><i></i><span>แคลคูลัส 1</span></span><span>วันนี้ 23:59 น.</span><span class="chip chip-today">อีก 6 ชม.</span></div>
           <div class="focus-next"><small>ขั้นต่อไป · ติ๊กเมื่อทำเสร็จ</small><label><span class="check"></span><span>ทำข้อ 11–20</span></label></div>
           <div class="focus-prog"><div class="bar"><span style="width:25%"></span></div><span>1/4 ขั้น</span></div>
@@ -103,11 +103,11 @@
 
     <section class="feature">
       <div>
-        <p class="eyebrow">แตก</p>
+        <p class="eyebrow">แบ่ง</p>
         <h2>ขั้นตอนย่อยและความคืบหน้า</h2>
         <p>แบ่งงานใหญ่เป็นขั้นที่ทำเสร็จได้ในครั้งเดียว ติ๊กแล้วแถบความคืบหน้าขยับตาม สถานะของงานเปลี่ยนจาก ยังไม่เริ่ม เป็น กำลังทำ และ ทำครบแล้ว รอส่ง</p>
-        <p>“ทำครบ” กับ “ส่งแล้ว” แยกกัน เพราะงานที่ทำเสร็จแต่ยังไม่ได้อัปโหลดก็ยังไม่ทันส่งจริง</p>
-        <a class="btn btn-ink" href="task.html?id=demo-stat-report">เปิดงานตัวอย่าง</a>
+        <p>แยก “ทำครบ” กับ “ส่งแล้ว” ออกจากกัน งานที่ทำเสร็จแต่ยังไม่อัปโหลดจึงไม่หลุดจากรายการ</p>
+        <a class="btn btn-ink" href="task.html">เปิดดูรายละเอียดงาน</a>
       </div>
       <div class="feature-demo" aria-hidden="true">
         <div class="task" style="--c:#1E9E8F">
@@ -129,7 +129,7 @@
         <p class="eyebrow">หา</p>
         <h2>ค้นหาและกรองงาน</h2>
         <p>ในหน้างานของฉัน กรองด้วยคำค้น วิชา และสถานะได้ทันที ส่วนหน้าค้นหางานค้นลึกถึงโน้ตและขั้นตอนย่อย ไฮไลต์คำที่พบ และกรองตามประเภทงานกับช่วงวันส่งได้</p>
-        <p>คำค้นกับตัวกรองถูกเก็บไว้ในลิงก์ของหน้า บุ๊กมาร์กไว้เปิดซ้ำได้</p>
+        <p>การค้นหาที่ใช้บ่อยบุ๊กมาร์กไว้เปิดซ้ำได้</p>
         <a class="btn btn-ink" href="search.html?q=%E0%B8%81%E0%B8%A5%E0%B8%B8%E0%B9%88%E0%B8%A1">ลองค้นคำว่า “กลุ่ม”</a>
       </div>
       <div class="feature-demo" aria-hidden="true">
@@ -147,7 +147,7 @@
         <p class="eyebrow">เก็บ</p>
         <h2>ไม่ต้องสมัคร ลบแล้วย้อนกลับได้</h2>
         <p>รายการงานบันทึกในเบราว์เซอร์ทันทีที่แก้ ปิดแล้วเปิดใหม่ก็ยังอยู่ ไม่ต้องสร้างบัญชี และรายการไม่ถูกส่งออกไปที่ใด</p>
-        <p>เมื่อลบงาน ลบขั้นตอน หรือเปลี่ยนสถานะ จะมีปุ่ม “ย้อนกลับ” ให้กดได้ประมาณ 7 วินาที จึงไม่ต้องตอบหน้าต่างยืนยันทุกครั้ง</p>
+        <p>เมื่อลบงาน ลบขั้นตอน หรือเปลี่ยนสถานะ ถ้ากดผิด กด “ย้อนกลับ” ได้ทันที</p>
         <a class="btn btn-ink" href="board.html">ไปที่งานของฉัน</a>
       </div>
       <div class="feature-demo" aria-hidden="true">
@@ -159,17 +159,16 @@
   <section class="section" style="padding-top:40px">
     <div class="wrap">
       <div class="section-head">
-        <p class="eyebrow">ยังไม่มีในเวอร์ชันนี้</p>
-        <h2>สิ่งที่ยังไม่ได้สร้าง</h2>
-        <p class="lead">ข้อจำกัดของต้นแบบนี้ ซึ่งอยู่ในแผนพัฒนาต่อ</p>
+        <p class="eyebrow">สิ่งที่กำลังจะมา</p>
+        <h2>ฟีเจอร์ที่กำลังจะมา</h2>
       </div>
       <ul class="not-yet">
-        <li><span class="tag tag-later">ระยะ 2</span><div><strong>เปิดรายการเดียวกันได้หลายเครื่อง</strong><br><span class="muted">ตอนนี้งานที่เพิ่มในคอมจะไม่ขึ้นในมือถือ เพราะเก็บแยกตามเบราว์เซอร์</span></div></li>
-        <li><span class="tag tag-later">ระยะ 2</span><div><strong>แจ้งเตือนก่อนถึงกำหนด</strong><br><span class="muted">ตอนนี้ต้องเปิดหน้าเว็บเพื่อดูเวลาที่เหลือเอง</span></div></li>
-        <li><span class="tag tag-later">ระยะ 3</span><div><strong>แชร์งานกลุ่มกับเพื่อน</strong><br><span class="muted">ตอนนี้แต่ละคนต้องจดงานกลุ่มในรายการของตัวเอง</span></div></li>
-        <li><span class="tag tag-later">ระยะ 3</span><div><strong>นำเข้างานจากปฏิทินหรือระบบเรียนออนไลน์</strong><br><span class="muted">ตอนนี้ต้องพิมพ์เพิ่มงานเอง</span></div></li>
+        <li><span class="tag tag-later">เร็ว ๆ นี้</span><div><strong>เปิดรายการเดียวกันได้หลายเครื่อง</strong><br><span class="muted">เพิ่มงานในคอม แล้วเปิดดูต่อในมือถือได้ทันที</span></div></li>
+        <li><span class="tag tag-later">เร็ว ๆ นี้</span><div><strong>แจ้งเตือนก่อนถึงกำหนด</strong><br><span class="muted">เตือนล่วงหน้าเมื่องานใกล้ถึงกำหนด ไม่ต้องคอยเปิดเว็บเช็กเอง</span></div></li>
+        <li><span class="tag tag-later">เร็ว ๆ นี้</span><div><strong>แชร์งานกลุ่มกับเพื่อน</strong><br><span class="muted">ทั้งกลุ่มเห็นรายการเดียวกัน ใครติ๊กขั้นไหนเพื่อนก็เห็น</span></div></li>
+        <li><span class="tag tag-later">เร็ว ๆ นี้</span><div><strong>นำเข้างานจากปฏิทินหรือระบบเรียนออนไลน์</strong><br><span class="muted">ดึงกำหนดส่งเข้ามาเอง ไม่ต้องพิมพ์ทีละงาน</span></div></li>
       </ul>
-      <p><a href="business.html#roadmap">ดูแผนพัฒนาในหน้าแผนธุรกิจ →</a></p>
+      <p><a href="pricing.html">ดูแพ็กเกจ Plus →</a></p>
     </div>
   </section>
 </main>
@@ -178,7 +177,7 @@
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#E5532D"/><path d="M8.5 16.5l5 5L23.5 11" fill="none" stroke="#FFFDF8" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="25.5" cy="6.5" r="3.2" fill="#FFD94D"/></svg>ทันส่ง</a>
+        <a class="brand" href="index.html"><svg viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4A6DFF"/><stop offset="1" stop-color="#1E3CD8"/></linearGradient></defs><rect width="32" height="32" rx="9" fill="url(#lg1)"/><path d="M13.4 5h5.2M16 5v3.4" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/><path d="M16 8.4A7.9 7.9 0 1 0 23.9 16.3" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/><path d="M12.2 16.2l3.2 3.2 9-9.2" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>ทันส่ง</a>
         <p>รวมงานทุกวิชาไว้ที่เดียว เรียงตามเวลาส่ง และบอกว่าควรเริ่มงานไหนก่อน</p>
       </div>
       <ul class="foot-links">
@@ -188,14 +187,14 @@
         <li><a href="how-to.html">วิธีใช้</a></li>
         <li><a href="board.html">งานของฉัน</a></li>
         <li><a href="search.html">ค้นหางาน</a></li>
-        <li><a href="task.html?id=demo-stat-report">ตัวอย่างรายละเอียดงาน</a></li>
-        <li><a href="business.html">แผนธุรกิจ</a></li>
+        <li><a href="task.html">รายละเอียดงาน</a></li>
+        <li><a href="pricing.html">ราคา</a></li>
       </ul>
     </div>
-    <p class="foot-note">ทันส่งเป็นแนวคิดธุรกิจในโครงงานรายวิชา TU107 ยังไม่ใช่บริการที่เปิดให้ใช้จริง ส่วนทดลองเก็บรายการงานไว้ในเบราว์เซอร์ของคุณเท่านั้น</p>
+    <p class="foot-note">ทันส่งเป็นแนวคิดธุรกิจในโครงงานรายวิชา TU107 ยังไม่ใช่บริการที่เปิดให้ใช้จริง รายการงานเก็บไว้ในเบราว์เซอร์ของคุณเท่านั้น</p>
   </div>
 </footer>
 
-<script src="assets/app.js"></script>
+<script src="assets/app.js?v=6"></script>
 </body>
 </html>

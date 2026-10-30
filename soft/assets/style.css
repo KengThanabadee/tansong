@@ -230,6 +230,7 @@ mark, .hl {
 .hero { padding: 64px 0 84px; }
 .hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 56px; align-items: center; }
 .hero h1 { font-size: clamp(36px, 5.6vw, 62px); line-height: 1.22; }
+.hero h1 .nw { white-space: nowrap; }
 .hero .lead { margin-bottom: 28px; }
 .hero-note { margin-top: 16px; font-size: 15px; color: var(--ink-3); }
 .hero-demo { position: relative; }
